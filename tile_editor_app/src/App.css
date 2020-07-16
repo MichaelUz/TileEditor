@@ -4,6 +4,22 @@
 
 .TitleText{
   color: rgb(3, 227, 99);
+  font-size: 600%;
+  font-weight: bold;
+}
+
+hr{
+  color: rgb(3, 227, 99);
+  border-style: solid;
+  width: 50%;
+  margin: 30px auto;
+}
+
+.tilesLogo{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 256px;
+  height: 64px;
 }
 
 .githubLogo{
