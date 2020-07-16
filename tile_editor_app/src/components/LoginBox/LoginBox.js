@@ -2,11 +2,9 @@ import React from 'react';
 
 import classes from './LoginBox.module.css'
 
-
-const textStyle = {
-    color: 'white'
-}
-
+/*
+   props : none
+*/
 const loginBox = (props) => {
     return (
         <div>
@@ -22,6 +20,7 @@ const loginBox = (props) => {
             </div>
 
         <a className={classes.createAcc} href='https://google.ca/'>Don't have an account ? Create an account.</a>
+        <a className={classes.createAcc} href='https://google.ca/'>Continue without an account.</a>
         </div>
     )
 };
