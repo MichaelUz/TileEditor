@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 import classes from './LoginBox.module.css'
 
 /*
@@ -15,8 +15,9 @@ const loginBox = (props) => {
                 <br/>
                 <label className = {classes.label} htmlFor = 'password'>Password:  </label>
                 <input className = {classes.inputField} type = 'password' id = 'password'></input>
-
-                <button className = {classes.nextButton}>Login</button>
+                <Link to='/editor'>
+                    <button className = {classes.nextButton}>Login</button>
+                </Link>
             </div>
 
         <a className={classes.createAcc} href='https://google.ca/'>Don't have an account ? Create an account.</a>

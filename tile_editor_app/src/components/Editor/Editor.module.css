@@ -1,0 +1,9 @@
+.rightPanel{
+    position: fixed;
+    right: 50px;
+    border-radius: 30px;
+    width: 350px;
+    height: 700px;
+    background-color: rgb(32, 32, 32);
+    color: white;
+}

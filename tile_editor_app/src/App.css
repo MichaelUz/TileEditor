@@ -23,6 +23,8 @@ hr{
 }
 
 .githubLogo{
+  position: fixed;
+  bottom: 30px;
   margin-top: 50px;
   width: 24px;
   height: 24px;
