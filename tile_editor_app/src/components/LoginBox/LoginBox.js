@@ -1,0 +1,29 @@
+import React from 'react';
+
+import classes from './LoginBox.module.css'
+
+
+const textStyle = {
+    color: 'white'
+}
+
+const loginBox = (props) => {
+    return (
+        <div>
+            <div className = {classes.loginBox}>
+                <h2>Login</h2>
+                <label className = {classes.label} htmlFor = 'username'>Username: </label>
+                <input className = {classes.inputField} type = 'text' id = 'username'></input>
+                <br/>
+                <label className = {classes.label} htmlFor = 'password'>Password:  </label>
+                <input className = {classes.inputField} type = 'password' id = 'password'></input>
+
+                <button className = {classes.nextButton}>Login</button>
+            </div>
+
+        <a className={classes.createAcc} href='https://google.ca/'>Don't have an account ? Create an account.</a>
+        </div>
+    )
+};
+
+export default loginBox;

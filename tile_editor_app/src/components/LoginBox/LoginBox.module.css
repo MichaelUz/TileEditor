@@ -1,0 +1,54 @@
+.loginBox{
+    background-color: rgb(32, 32, 32);
+    padding: 4px;
+    border-radius: 10px;
+    width: 60%;
+    margin: auto;
+    box-shadow: 4px 4px rgb(20, 20, 20);
+}
+
+.label{
+    display: inline-block;
+    color: white;
+    width: 90px;
+}
+
+.inputField{
+    margin: 5px 10px;
+    border-width: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    background-color: rgb(20, 20, 20);
+    height: 25px;
+    padding: 3px 10px;
+    color: white;
+}
+
+.createAcc{
+    display: block;
+    margin-top: 20px;
+    color: rgb(150, 150, 150);
+}
+
+
+.nextButton{
+    display: block;
+    width: 30%;
+    height: 40px;
+    margin:  30px auto 10px;
+    background-color: rgb(100, 0, 170);
+    transition: 0.2s ease-in-out;
+    border-radius: 5px;
+    border-width: 0px;
+    color: white;
+    cursor: pointer;
+}
+
+.nextButton:hover{
+    border-radius: 10px;
+}
+
+
+h2{
+    color: rgb(150, 150, 150);
+}
