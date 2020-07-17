@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom';
 import './App.css';
 
@@ -11,8 +11,10 @@ import Editor from './components/Editor/Editor';
 import GitHubLogo from './assets/images/GitHub-Mark-64px.png';
 
 function App() {
+  document.title = 'Tiles';  
+
   return (
-    <div className="App">
+    <div className={'App bg'}>
       <Switch>
         <Route path='/' exact>
           <LoginPage/>
