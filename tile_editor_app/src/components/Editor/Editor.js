@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Line, Circle} from 'react-konva';
+import ScrollContainer from 'react-indiana-drag-scroll'
+
 
 import classes from './Editor.module.css'
 import MoveCursor from '../../assets/images/moveCursor.png';
@@ -52,11 +54,14 @@ const Editor = (props) => {
 
     return(
         <div className={classes.container}>
-            <Stage width={width} height={height}>
-                <Layer>
-                    {grid}
-                </Layer>
-            </Stage>
+            <ScrollContainer className = {classes.container} vertical = {true} horizontal hideScrollbars = {false}>
+                <Stage width={width} height={height}>
+                    <Layer>
+                        {grid}
+                    </Layer>
+                </Stage>
+            </ScrollContainer>
+            
             <div className = {classes.rightPanel}>
                 <div className = {classes.rpButtons}>
                     <input className = {classes.rpButton} type = 'image' src = { MoveCursor } />

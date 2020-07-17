@@ -3,6 +3,7 @@ body{
 }
 
 .container{
+    max-height: 100vh;
     position: relative;
 }
 
