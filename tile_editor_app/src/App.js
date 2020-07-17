@@ -8,7 +8,7 @@ import './App.css';
 
 import LoginPage from './components/LoginPage/LoginPage';
 import Editor from './components/Editor/Editor';
-import GitHubLogo from './assets/images/GitHub-Mark-64px.png';
+import GitHubLogo from './assets/images/GitHub-Mark-Light-32px.png';
 
 function App() {
   document.title = 'Tiles';  
