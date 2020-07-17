@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LoginBox from './LoginBox/LoginBox';
-import './LoginPage.module.css';
+import classes from './LoginPage.module.css';
 
 const loginPage = (props) => {
     return(
@@ -9,6 +9,9 @@ const loginPage = (props) => {
             <text className = 'TitleText'>Tiles</text>
              <hr/>
             <LoginBox/>
+            <a className={classes.createAcc} href='https://google.ca/'>Don't have an account ? Create an account.</a>
+            <br/>
+            <a className={classes.createAcc} href='https://google.ca/'>Continue without an account.</a>
         </div>
        
     );

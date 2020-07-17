@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import Konva from 'konva';
+import { Stage, Layer, Line, Circle} from 'react-konva';
 
 import classes from './Editor.module.css'
 
 const Editor = (props) => {
-    const canvasRef = React.useRef(null);
 
     useEffect(() => {
         document.body.className = 'noBg';
@@ -12,18 +13,50 @@ const Editor = (props) => {
         });
     });
 
-    const click = () => {
-        let ctx = canvasRef.current.getContext('2d');
-        ctx.strokeText("Hello World", 10, 50);
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    let maxX = Math.floor(width / 64);
+    let maxY = Math.floor(height / 64);
+
+    console.log(maxX, maxY);
+    let grid = [];
+
+    for(let i = 0; i < width; i += 64){
+        grid.push(
+            <Line
+                key = { i }
+                x = { i }
+                y = { 0 }
+                points = { [ 0, 0, 0, height ] }
+                stroke = 'rgb(100, 100, 100)'
+            />
+        )
     }
+
+    for(let i = 0; i < height; i += 64){
+        grid.push(
+            <Line
+                key = { i + maxX }
+                x = { 0 }
+                y = { i }
+                points = { [ 0, 0, width, 0 ] }
+                stroke = 'rgb(100, 100, 100)'
+            />
+        )
+    }
+
+    console.log(grid.length);
+    
+
     return(
         <div className={classes.container}>
-            <button onClick={click}>Clik me</button>
-            <canvas
-                ref = {canvasRef}
-                width = {window.innerWidth}
-                height = {window.innerHeight}>
-            </canvas>
+            <Stage width={window.innerWidth} height={window.innerHeight}>
+                <Layer>
+                    {grid}
+                </Layer>
+            </Stage>
+
             <div className = {classes.rightPanel}>
             </div>
         </div>

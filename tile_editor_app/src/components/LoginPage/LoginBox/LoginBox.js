@@ -19,9 +19,6 @@ const loginBox = (props) => {
                     <button className = {classes.nextButton}>Login</button>
                 </Link>
             </div>
-
-        <a className={classes.createAcc} href='https://google.ca/'>Don't have an account ? Create an account.</a>
-        <a className={classes.createAcc} href='https://google.ca/'>Continue without an account.</a>
         </div>
     )
 };

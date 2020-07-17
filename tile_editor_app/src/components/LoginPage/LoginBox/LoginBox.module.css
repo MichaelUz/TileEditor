@@ -3,7 +3,7 @@
     padding: 4px;
     border-radius: 10px;
     width: 400px;
-    margin: auto;
+    margin: auto auto 20px auto;
     box-shadow: 4px 4px rgb(20, 20, 20);
 }
 
@@ -23,13 +23,6 @@
     padding: 3px 10px;
     color: white;
 }
-
-.createAcc{
-    display: block;
-    margin-top: 20px;
-    color: rgb(150, 150, 150);
-}
-
 
 .nextButton{
     display: block;
