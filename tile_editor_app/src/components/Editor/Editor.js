@@ -14,8 +14,8 @@ const Editor = (props) => {
         });
     });
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = window.innerWidth * 2;
+    const height = window.innerHeight * 2;
 
     let maxX = Math.floor(width / 64);
     let maxY = Math.floor(height / 64);
@@ -52,12 +52,11 @@ const Editor = (props) => {
 
     return(
         <div className={classes.container}>
-            <Stage width={window.innerWidth} height={window.innerHeight}>
+            <Stage width={width} height={height}>
                 <Layer>
                     {grid}
                 </Layer>
             </Stage>
-
             <div className = {classes.rightPanel}>
                 <div className = {classes.rpButtons}>
                     <input className = {classes.rpButton} type = 'image' src = { MoveCursor } />

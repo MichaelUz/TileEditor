@@ -26,7 +26,8 @@ body{
 canvas{
     border-style: solid;
     border-width: 10px;
-    width: 100%;
+    width: 200%;
+    height: 200%;
 }
 
 .rightPanel{
