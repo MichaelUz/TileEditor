@@ -3,6 +3,7 @@ import Konva from 'konva';
 import { Stage, Layer, Line, Circle} from 'react-konva';
 
 import classes from './Editor.module.css'
+import MoveCursor from '../../assets/images/moveCursor.png';
 
 const Editor = (props) => {
 
@@ -58,6 +59,9 @@ const Editor = (props) => {
             </Stage>
 
             <div className = {classes.rightPanel}>
+                <div className = {classes.rpButtons}>
+                    <input className = {classes.rpButton} type = 'image' src = { MoveCursor } />
+                </div>
             </div>
         </div>
       
