@@ -1,0 +1,21 @@
+.controllerButton{
+    margin: 20px;
+    width: 64px;
+    height: 64px;
+    background-color: transparent;
+    border-width: 0;
+    padding: 5px;
+    outline: 0;
+}
+
+.controllerButton:hover{
+    border-style: solid;
+    border-width: 0px 0px 3px;
+    border-color: rgb(100, 0, 170);
+}
+
+.selected{
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100);
+}
+

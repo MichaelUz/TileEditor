@@ -3,7 +3,7 @@ import Konva from 'konva';
 import { Stage, Layer, Line, Circle} from 'react-konva';
 import ScrollContainer from 'react-indiana-drag-scroll'
 
-
+import ControllerButton from '../ControllerButton/ControllerButton';
 import classes from './Editor.module.css'
 import MoveCursor from '../../assets/images/moveCursor.png';
 
@@ -22,7 +22,6 @@ const Editor = (props) => {
     let maxX = Math.floor(width / 64);
     let maxY = Math.floor(height / 64);
 
-    console.log(maxX, maxY);
     let grid = [];
 
     for(let i = 0; i < width; i += 64){
@@ -48,8 +47,6 @@ const Editor = (props) => {
             />
         )
     }
-
-    console.log(grid.length);
     
 
     return(
@@ -64,7 +61,7 @@ const Editor = (props) => {
             
             <div className = {classes.rightPanel}>
                 <div className = {classes.rpButtons}>
-                    <input className = {classes.rpButton} type = 'image' src = { MoveCursor } />
+                    <ControllerButton selectable image = {MoveCursor} select = {()=> null}/>
                 </div>
             </div>
         </div>
