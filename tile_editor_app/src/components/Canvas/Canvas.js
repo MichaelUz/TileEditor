@@ -42,15 +42,17 @@ const Canvas = (props) => {
                 <Layer>
                     {grid}
                     {props.children}
-                    <Rect
-                        x={Math.floor(props.mousePos.x / 64) * 64}
-                        y={Math.floor(props.mousePos.y / 64) * 64}
-                        stroke = 'rgba(3, 227, 99, 50)'
-                        width={64}
-                        height={64}
-                        strokeWidth={1}
-                        fill= 'rgba(3, 180, 50, 0.1)'
-                    />
+                    {props.canMove ? null : 
+                        <Rect
+                            x={Math.floor(props.mousePos.x / 64) * 64}
+                            y={Math.floor(props.mousePos.y / 64) * 64}
+                            stroke = 'rgba(3, 227, 99, 50)'
+                            width={64}
+                            height={64}
+                            strokeWidth={1}
+                            fill= 'rgba(3, 180, 50, 0.1)'
+                        />
+                    }
                 </Layer>
             </Stage>
         </ScrollContainer>

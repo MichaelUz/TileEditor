@@ -3,12 +3,7 @@ import { ChromePicker } from 'react-color';
 import { connect } from 'react-redux';
 
 import ControllerButton from '../../components/ControllerButton/ControllerButton';
-import MoveCursor from '../../assets/images/moveCursor.png';
-import StampIcon from '../../assets/images/stampIcon.png';
-import SelectIcon from '../../assets/images/selectIcon.png';
-import ColorPickerIcon from '../../assets/images/colorPickerIcon.png';
-import ExportIcon from '../../assets/images/exportIcon.png';
-import DownloadIcon from '../../assets/images/downloadIcon.png';
+import Icons from '../../assets/images/toolIcons/index';
 import classes from './ControllerPanel.module.css';
 import * as actions from '../../store/actions/editorActions'; 
 import * as tools from './tools';
@@ -28,6 +23,13 @@ class ControllerPanel extends Component {
             [tools.SELECT]: false,
             [tools.COLOR_PICKER]: false
         }
+    }
+
+    mapIconsToTool = {
+        [tools.MOVE]: Icons.MoveCursor,
+        [tools.STAMP]: Icons.StampIcon,
+        [tools.SELECT]: Icons.SelectIcon,
+        [tools.COLOR_PICKER]: Icons.ColorPickerIcon
     }
 
     handleChange = (color, event) => {
@@ -54,14 +56,23 @@ class ControllerPanel extends Component {
     }
 
     render(){
+        let toolButtons = Object.keys(this.mapIconsToTool).map((tool, index) => {
+            return(
+                <ControllerButton 
+                    key={index} 
+                    selected={this.state.selected[tool]} 
+                    selectable 
+                    image={this.mapIconsToTool[tool]} 
+                    select ={() => this.toolSelectedHandler(tool)}
+                />
+            );
+        });
+
         return(
             <div className = {classes.panel}>
-                <ControllerButton selected = {this.state.selected[tools.MOVE]} selectable image = {MoveCursor} select = {() => this.toolSelectedHandler(tools.MOVE)}/>
-                <ControllerButton selected = {this.state.selected[tools.STAMP]} selectable image = {StampIcon} select = {()=> this.toolSelectedHandler(tools.STAMP)}/>
-                <ControllerButton selected = {this.state.selected[tools.SELECT]} selectable image = {SelectIcon} select = {()=> this.toolSelectedHandler(tools.SELECT)}/>
-                <ControllerButton selected = {this.state.selected[tools.COLOR_PICKER]} selectable image = {ColorPickerIcon} select = {() => this.toolSelectedHandler(tools.COLOR_PICKER)}/>
-                <ControllerButton selectable={false} image = {ExportIcon} select = {()=> null}/>
-                <ControllerButton selectable={false} image = {DownloadIcon} select = {()=> null}/>
+                {toolButtons}
+                <ControllerButton selectable={false} image = {Icons.ExportIcon} select = {()=> null}/>
+                <ControllerButton selectable={false} image = {Icons.DownloadIcon} select = {()=> null}/>
                 <ChromePicker color = {this.state.currentColor} onChange = {this.handleChange} />
             </div>
         );
