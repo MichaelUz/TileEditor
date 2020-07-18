@@ -6,6 +6,7 @@ import Canvas from '../../components/Canvas/Canvas';
 import ControllerPanel from '../ControllerPanel/ControllerPanel';
 import classes from './Editor.module.css';
 import Tile from '../../assets/images/grassCenter.png';
+import * as tools from '../ControllerPanel/tools';
 
 const Editor = (props) => {
     
@@ -14,6 +15,7 @@ const Editor = (props) => {
         x: 0,
         y: 0
     });
+    let [tileID, updateTileID] = useState(0);
 
     //Change background on editor page
     useEffect(() => {
@@ -34,24 +36,25 @@ const Editor = (props) => {
     }
 
     let clickHandler = (event) => {
-        //draw an image at position
+        if(props.currentTool !== tools.STAMP) return;
         let tile = new window.Image(64, 64);
         tile.src = Tile;
         let newImages = [...images];
         newImages.push(
             <Image
-                key={mousePos.mouseX + mousePos.mouseY} 
+                key={tileID} 
                 image={tile}
                 x = {Math.floor(mousePos.x / 64 ) * 64}
                 y = {Math.floor(mousePos.y / 64 ) * 64}
             />
         );
+        updateTileID(++tileID);
         updateImages(newImages);
     }
 
     return(
             <div className={classes.container}>
-                <Canvas clicked={clickHandler} mouseMoveHandler={mouseMoveHandler} mousePos={mousePos}>
+                <Canvas clicked={clickHandler} mouseMoveHandler={mouseMoveHandler} mousePos={mousePos} canMove={props.currentTool === tools.MOVE }>
                     {images}
                 </Canvas>
                 <div className = {classes.rightPanel}>
@@ -63,7 +66,16 @@ const Editor = (props) => {
    
 };
 
-const mapStateToProps = () => null;
-const mapDispatchToProps =  () => null;
+const mapStateToProps = (state) => {
+    return {
+        currentTool: state.currentTool
+    }
+};
+
+const mapDispatchToProps =  (dispatch) => {
+    return {
+
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

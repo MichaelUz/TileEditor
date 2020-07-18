@@ -48,8 +48,9 @@ class ControllerPanel extends Component {
                 ...prevState,
                 selected: newSelected
             }
+        }, () => {
+            this.props.onToolChanged(newSelected[tool] === false ? tools.NONE : tool);
         });
-        this.props.onToolChanged(tool);
     }
 
     render(){

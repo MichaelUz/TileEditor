@@ -37,7 +37,7 @@ const Canvas = (props) => {
     }
 
     return(
-        <ScrollContainer className = {classes.container} vertical = {true} horizontal hideScrollbars = {false}>
+        <ScrollContainer className = {classes.container} vertical = {props.canMove} horizontal={props.canMove} hideScrollbars = {false}>
             <Stage onMouseDown={props.clicked} width={width} height={height} onMouseMove={props.mouseMoveHandler}>
                 <Layer>
                     {grid}
