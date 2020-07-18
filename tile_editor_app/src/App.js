@@ -7,12 +7,12 @@ import {
 import './App.css';
 
 import LoginPage from './components/LoginPage/LoginPage';
-import Editor from './components/Editor/Editor';
+import Editor from './containers/Editor/Editor';
 import GitHubLogo from './assets/images/GitHub-Mark-Light-32px.png';
 
 function App() {
   document.title = 'Tiles';  
-
+  console.log('APp rendered');
   return (
     <div className={'App bg'}>
       <Switch>
