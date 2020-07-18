@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Konva from 'konva';
-import { Stage, Layer, Line, Image} from 'react-konva';
+import { Stage, Layer, Line, Image, Rect} from 'react-konva';
 import ScrollContainer from 'react-indiana-drag-scroll'
 import useImage from 'use-image';
 
@@ -54,29 +54,48 @@ const Editor = (props) => {
             />
         )
     }
-
+    let hoverRect = null;
     let mouseMoveHandler = (event) => {
+        let stagePos = event.target.getStage().getPointerPosition();
+
         updateMousePos({
-            mouseX: event.clientX,
-            mouseY: event.clientXY
+            mouseX: stagePos.x,
+            mouseY: stagePos.y
         });
+        hoverRect = <Rect
+            x={Math.floor(mousePos.mouseX)}
+            y={Math.floor(mousePos.mouseY)}
+            stroke = 'rgba(3, 227, 99, 50)'
+            width={64}
+            height={64}
+            strokeWidth={1}
+            fill= 'rgb(3, 180, 50)'
+        />
     }
 
     let clickHandler = (event) => {
         //draw an image at position
-        alert('clicked');
+        alert();
     }
     
     let tile = new window.Image(64, 64);
     tile.src  = Tile;
-
     return(
-        <div className={classes.container} onMouseMove = {mouseMoveHandler}>
+        <div className={classes.container}>
             <ScrollContainer className = {classes.container} vertical = {true} horizontal hideScrollbars = {false}>
-                <Stage onMouseUp={clickHandler} width={width} height={height}>
+                <Stage onMouseUp={clickHandler} width={width} height={height} onMouseMove={mouseMoveHandler}>
                     <Layer>
                         {grid}
                         <Image image={tile}/>
+                        <Rect
+                            x={Math.floor(mousePos.mouseX / 64) * 64}
+                            y={Math.floor(mousePos.mouseY / 64) * 64}
+                            stroke = 'rgba(3, 227, 99, 50)'
+                            width={64}
+                            height={64}
+                            strokeWidth={1}
+                            fill= 'rgba(3, 180, 50, 0.1)'
+                        />
                     </Layer>
                 </Stage>
             </ScrollContainer>
