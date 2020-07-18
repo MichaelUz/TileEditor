@@ -3,9 +3,8 @@ import Konva from 'konva';
 import { Stage, Layer, Line, Circle} from 'react-konva';
 import ScrollContainer from 'react-indiana-drag-scroll'
 
-import ControllerButton from '../ControllerButton/ControllerButton';
+import ControllerPanel from '../../containers/ControllerPanel/ControllerPanel';
 import classes from './Editor.module.css'
-import MoveCursor from '../../assets/images/moveCursor.png';
 
 const Editor = (props) => {
 
@@ -47,12 +46,17 @@ const Editor = (props) => {
             />
         )
     }
+
+    let clickHandler = (event) => {
+        console.log(event);
+        alert('hello');
+    }
     
 
     return(
         <div className={classes.container}>
             <ScrollContainer className = {classes.container} vertical = {true} horizontal hideScrollbars = {false}>
-                <Stage width={width} height={height}>
+                <Stage onMouseUp={clickHandler} width={width} height={height}>
                     <Layer>
                         {grid}
                     </Layer>
@@ -60,9 +64,7 @@ const Editor = (props) => {
             </ScrollContainer>
             
             <div className = {classes.rightPanel}>
-                <div className = {classes.rpButtons}>
-                    <ControllerButton selectable image = {MoveCursor} select = {()=> null}/>
-                </div>
+                <ControllerPanel />
             </div>
         </div>
       
