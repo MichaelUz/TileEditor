@@ -6,7 +6,6 @@ import classes from '../../containers/Editor/Editor.module.css';
 
 const Canvas = (props) => {
 
-    console.log('Canvas rendred');
     const width = window.innerWidth * 2;
     const height = window.innerHeight * 2;
 

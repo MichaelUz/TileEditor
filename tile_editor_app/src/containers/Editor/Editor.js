@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-konva';
+import { connect } from 'react-redux';
 
 import Canvas from '../../components/Canvas/Canvas';
 import ControllerPanel from '../ControllerPanel/ControllerPanel';
 import classes from './Editor.module.css';
-import Tile from '../../assets/images/grassCenter.png'
+import Tile from '../../assets/images/grassCenter.png';
 
 const Editor = (props) => {
     
@@ -62,4 +63,7 @@ const Editor = (props) => {
    
 };
 
-export default Editor;
+const mapStateToProps = () => null;
+const mapDispatchToProps =  () => null;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

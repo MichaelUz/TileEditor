@@ -10,18 +10,14 @@ import classes from './ControllerButton.module.css';
 */
 const ControllerButton = (props) => {
 
-    let [selected, toggleSelected] = useState(false);
     let classNames = [classes.controllerButton, classes.selected];
-    classNames = selected ? classNames.join(' ') : classes.controllerButton;
+    classNames = props.selected ? classNames.join(' ') : classes.controllerButton;
 
     return(
         <input className = {props.selectable ? classNames : classes.controllerButton} 
             type = 'image' 
             src = { props.image } 
-            onClick = { () => {
-                props.select(selected);
-                toggleSelected(!selected);
-            }}/>
+            onClick = {props.select}/>
     );
     
 };
