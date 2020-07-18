@@ -32,8 +32,8 @@ class ControllerPanel extends Component {
                 <ControllerButton selectable image = {StampIcon} select = {()=> null}/>
                 <ControllerButton selectable image = {SelectIcon} select = {()=> null}/>
                 <ControllerButton selectable image = {ColorPickerIcon} select = {()=> null}/>
-                <ControllerButton selectable image = {ExportIcon} select = {()=> null}/>
-                <ControllerButton selectable image = {DownloadIcon} select = {()=> null}/>
+                <ControllerButton selectable={false} image = {ExportIcon} select = {()=> null}/>
+                <ControllerButton selectable={false} image = {DownloadIcon} select = {()=> null}/>
                 <ChromePicker color = {this.state.currentColor} onChange = {this.handleChange} />
             </div>
         );
