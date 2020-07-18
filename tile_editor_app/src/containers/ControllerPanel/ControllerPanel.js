@@ -23,7 +23,7 @@ class ControllerPanel extends Component {
             a: 1
         },
         selected: {
-            [tools.MOVE]: false,
+            [tools.MOVE]: true,
             [tools.STAMP]: false,
             [tools.SELECT]: false,
             [tools.COLOR_PICKER]: false

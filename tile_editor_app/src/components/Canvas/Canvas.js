@@ -41,6 +41,7 @@ const Canvas = (props) => {
             <Stage onMouseDown={props.clicked} width={width} height={height} onMouseMove={props.mouseMoveHandler}>
                 <Layer>
                     {grid}
+                    {props.children}
                     <Rect
                         x={Math.floor(props.mousePos.x / 64) * 64}
                         y={Math.floor(props.mousePos.y / 64) * 64}
@@ -50,7 +51,6 @@ const Canvas = (props) => {
                         strokeWidth={1}
                         fill= 'rgba(3, 180, 50, 0.1)'
                     />
-                    {props.children}
                 </Layer>
             </Stage>
         </ScrollContainer>
