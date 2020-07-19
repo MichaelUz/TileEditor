@@ -1,0 +1,15 @@
+.tile{
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border: 2px solid transparent;
+    outline: 0;
+}
+
+.tile:hover{
+    border: 2px solid rgb(3, 227, 99);
+}
+
+.selected{
+    border: 2px solid rgb(3, 227, 99);
+}

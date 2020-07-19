@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Canvas from '../../components/Canvas/Canvas';
 import ControllerPanel from '../ControllerPanel/ControllerPanel';
+import Palette from '../Palette/Palette';
 import classes from './Editor.module.css';
 import Tile from '../../assets/images/grassCenter.png';
 import * as tools from '../ControllerPanel/tools';
@@ -36,9 +37,9 @@ const Editor = (props) => {
     }
 
     let clickHandler = (event) => {
-        if(props.currentTool !== tools.STAMP) return;
+        if(props.currentTool !== tools.STAMP || props.currentTile === null) return;
         let tile = new window.Image(64, 64);
-        tile.src = Tile;
+        tile.src = props.currentTile.image;
         let newImages = [...images];
         newImages.push(
             <Image
@@ -59,6 +60,7 @@ const Editor = (props) => {
                 </Canvas>
                 <div className = {classes.rightPanel}>
                     <ControllerPanel />
+                    <Palette/>
                 </div>     
             </div>
              
@@ -68,7 +70,8 @@ const Editor = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        currentTool: state.currentTool
+        currentTool: state.currentTool,
+        currentTile: state.currentTile
     }
 };
 

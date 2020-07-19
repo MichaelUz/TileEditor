@@ -1,6 +1,15 @@
+import * as actionTypes from './actionsTypes';
+
 export const changeTool = (tool) => {
     return {
-        type: 'CHANGE_TOOL',
+        type: actionTypes.CHANGE_TOOL,
         tool: tool
+    }
+}
+
+export const selectTile = (id) => {
+    return{
+        type: actionTypes.SELECT_TILE,
+        id: id
     }
 }
