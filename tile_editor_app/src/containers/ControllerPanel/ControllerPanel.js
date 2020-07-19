@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ChromePicker } from 'react-color';
 import { connect } from 'react-redux';
 
+import ColorPicker from '../../components/ColorPicker/ColorPicker';
 import ControllerButton from '../../components/ControllerButton/ControllerButton';
 import Icons from '../../assets/images/toolIcons/index';
 import classes from './ControllerPanel.module.css';
@@ -73,7 +73,13 @@ class ControllerPanel extends Component {
                 {toolButtons}
                 <ControllerButton selectable={false} image = {Icons.ExportIcon} select = {()=> null}/>
                 <ControllerButton selectable={false} image = {Icons.DownloadIcon} select = {()=> null}/>
-                <ChromePicker color = {this.state.currentColor} onChange = {this.handleChange} />
+                {this.state.selected[tools.COLOR_PICKER] ? 
+                    <ColorPicker 
+                        currentColor={this.state.currentColor} 
+                        handleChange={this.handleChange}
+                        clicked={() => this.toolSelectedHandler(tools.COLOR_PICKER)}
+                    /> :
+                    null}
             </div>
         );
     }
