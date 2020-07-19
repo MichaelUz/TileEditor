@@ -7,12 +7,14 @@ import image2 from '../../assets/images/grassMid.png';
 
 let startingTile = new Tile(0, image, '');
 let startingTile2 = new Tile(1, image2, '');
+let startingTile3 = new Tile(2, null, 'rgb(200, 20, 145)');
+
 
 
 const initialState = {
     currentTool: tools.MOVE,
     currentTile: null,
-    palette: [startingTile, startingTile2]
+    palette: [startingTile, startingTile2, startingTile3]
 }
 
 const changeTool = (state, action) => {

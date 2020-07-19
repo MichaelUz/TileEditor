@@ -9,7 +9,6 @@ import Tile from '../../assets/images/grassCenter.png';
 class Palette extends Component {
     render() {
         let tiles = [];
-        console.log(this.props.myPalette);
         this.props.myPalette.forEach(tile => {
             tiles.push(
                 <PaletteTile key={tile.id} tile={tile} clicked={() => this.props.onSelectTile(tile.id)}/>

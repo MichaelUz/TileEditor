@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image } from 'react-konva';
+import { Image, Rect } from 'react-konva';
 import { connect } from 'react-redux';
 
 import Canvas from '../../components/Canvas/Canvas';
@@ -27,6 +27,7 @@ const Editor = (props) => {
     });
 
 
+    //update position of mouse in state
     let mouseMoveHandler = (event) => {
         let stagePos = event.target.getStage().getPointerPosition();
 
@@ -38,17 +39,37 @@ const Editor = (props) => {
 
     let clickHandler = (event) => {
         if(props.currentTool !== tools.STAMP || props.currentTile === null) return;
-        let tile = new window.Image(64, 64);
-        tile.src = props.currentTile.image;
         let newImages = [...images];
-        newImages.push(
-            <Image
-                key={tileID} 
-                image={tile}
-                x = {Math.floor(mousePos.x / 64 ) * 64}
-                y = {Math.floor(mousePos.y / 64 ) * 64}
-            />
-        );
+
+        //Draw rect as tile
+        if(props.currentTile.image === null){
+            console.log('drawing');
+            newImages.push(
+                <Rect
+                    key={tileID}
+                    width={64}
+                    height={64}
+                    x={Math.floor(mousePos.x / 64 ) * 64}
+                    y={Math.floor(mousePos.y / 64 ) * 64}
+                    strokeWidth={1}
+                    stroke= {props.currentTile.color}
+                    fill={props.currentTile.color}
+                />
+            )
+        }
+        //Draw image tile
+        else{
+            let tile = new window.Image(64, 64);
+            tile.src = props.currentTile.image;
+            newImages.push(
+                <Image
+                    key={tileID} 
+                    image={tile}
+                    x = {Math.floor(mousePos.x / 64 ) * 64}
+                    y = {Math.floor(mousePos.y / 64 ) * 64}
+                />
+            );
+        } 
         updateTileID(++tileID);
         updateImages(newImages);
     }
