@@ -51,8 +51,6 @@ const Editor = (props) => {
                     height={64}
                     x={Math.floor(mousePos.x / 64 ) * 64}
                     y={Math.floor(mousePos.y / 64 ) * 64}
-                    strokeWidth={1}
-                    stroke= {props.currentTile.color}
                     fill={props.currentTile.color}
                 />
             )

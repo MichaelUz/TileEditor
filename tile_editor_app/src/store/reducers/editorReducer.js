@@ -7,7 +7,7 @@ import image2 from '../../assets/images/grassMid.png';
 
 let startingTile = new Tile(0, image, '');
 let startingTile2 = new Tile(1, image2, '');
-let startingTile3 = new Tile(2, null, 'rgb(200, 20, 145)');
+let startingTile3 = new Tile(2, null, 'rgb(0, 180, 245)');
 
 
 
