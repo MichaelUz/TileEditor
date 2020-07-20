@@ -6,7 +6,6 @@ import Canvas from '../../components/Canvas/Canvas';
 import ControllerPanel from '../ControllerPanel/ControllerPanel';
 import Palette from '../Palette/Palette';
 import classes from './Editor.module.css';
-import Tile from '../../assets/images/grassCenter.png';
 import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
 
@@ -37,9 +36,19 @@ const Editor = (props) => {
         let stagePos = event.target.getStage().getPointerPosition();
 
         updateMousePos({
-            x: stagePos.x,
-            y: stagePos.y
+            x: Math.floor(stagePos.x / 64) * 64,
+            y: Math.floor(stagePos.y / 64) * 64
         });
+    }
+
+    let erase = () => {
+        let newImages = [];
+        images.forEach((image) => {
+            if (!(image.props.x === mousePos.x && image.props.y === mousePos.y)){
+                newImages.push(image);
+            }
+        });
+        return newImages;
     }
 
     let clickHandler = (event) => {
@@ -49,6 +58,7 @@ const Editor = (props) => {
         switch(props.currentTool){
             case tools.STAMP:
                 //Draw rect as tile
+                newImages = erase();
                 if(props.currentTile.image === null){
                     console.log('drawing');
                     newImages.push(
@@ -56,8 +66,8 @@ const Editor = (props) => {
                             key={tileID}
                             width={64}
                             height={64}
-                            x={Math.floor(mousePos.x / 64 ) * 64}
-                            y={Math.floor(mousePos.y / 64 ) * 64}
+                            x={mousePos.x}
+                            y={mousePos.y}
                             fill={props.currentTile.color}
                         />
                     )
@@ -70,8 +80,8 @@ const Editor = (props) => {
                         <Image
                             key={tileID} 
                             image={tile}
-                            x = {Math.floor(mousePos.x / 64 ) * 64}
-                            y = {Math.floor(mousePos.y / 64 ) * 64}
+                            x = {mousePos.x}
+                            y = {mousePos.y}
                         />
                     );
                 } 
@@ -79,7 +89,9 @@ const Editor = (props) => {
                 break;
             
             case tools.ERASER:
+                newImages = erase();
                 break;
+                
         }
 
         updateImages(newImages);

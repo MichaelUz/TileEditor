@@ -55,7 +55,6 @@ const addGrid = (state, action) => {
         ...state,
         gridTiles: new GridTiles(action.dimensions.rows, action.dimensions.columns)
     }
-    console.log(state.gridTiles);
     return state;
 }
 
