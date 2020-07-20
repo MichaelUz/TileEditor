@@ -21,7 +21,8 @@ class ControllerPanel extends Component {
             [tools.MOVE]: true,
             [tools.STAMP]: false,
             [tools.SELECT]: false,
-            [tools.COLOR_PICKER]: false
+            [tools.COLOR_PICKER]: false,
+            [tools.ERASER]: false
         }
     }
 
@@ -29,7 +30,8 @@ class ControllerPanel extends Component {
         [tools.MOVE]: Icons.MoveCursor,
         [tools.STAMP]: Icons.StampIcon,
         [tools.SELECT]: Icons.SelectIcon,
-        [tools.COLOR_PICKER]: Icons.ColorPickerIcon
+        [tools.COLOR_PICKER]: Icons.ColorPickerIcon,
+        [tools.ERASER]: Icons.EraserIcon
     }
 
     handleChange = (color, event) => {
@@ -37,11 +39,10 @@ class ControllerPanel extends Component {
     }
 
     toolSelectedHandler = (tool) => {
-        let newSelected = {
-            [tools.MOVE]: false,
-            [tools.STAMP]: false,
-            [tools.SELECT]: false,
-            [tools.COLOR_PICKER]: false
+        let newSelected = {...this.state.selected};
+        let keys = Object.keys(newSelected);
+        for(let i = 0; i < keys.length; i++){
+            newSelected[keys[i]] = false
         }
 
         this.setState((prevState) => {

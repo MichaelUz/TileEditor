@@ -38,38 +38,48 @@ const Editor = (props) => {
     }
 
     let clickHandler = (event) => {
-        if(props.currentTool !== tools.STAMP || props.currentTile === null) return;
+        if(props.currentTile === null && props.currentTool === tools.STAMP) return;
         let newImages = [...images];
 
-        //Draw rect as tile
-        if(props.currentTile.image === null){
-            console.log('drawing');
-            newImages.push(
-                <Rect
-                    key={tileID}
-                    width={64}
-                    height={64}
-                    x={Math.floor(mousePos.x / 64 ) * 64}
-                    y={Math.floor(mousePos.y / 64 ) * 64}
-                    fill={props.currentTile.color}
-                />
-            )
+        switch(props.currentTool){
+            case tools.STAMP:
+                //Draw rect as tile
+                if(props.currentTile.image === null){
+                    console.log('drawing');
+                    newImages.push(
+                        <Rect
+                            key={tileID}
+                            width={64}
+                            height={64}
+                            x={Math.floor(mousePos.x / 64 ) * 64}
+                            y={Math.floor(mousePos.y / 64 ) * 64}
+                            fill={props.currentTile.color}
+                        />
+                    )
+                }
+                //Draw image tile
+                else{
+                    let tile = new window.Image(64, 64);
+                    tile.src = props.currentTile.image;
+                    newImages.push(
+                        <Image
+                            key={tileID} 
+                            image={tile}
+                            x = {Math.floor(mousePos.x / 64 ) * 64}
+                            y = {Math.floor(mousePos.y / 64 ) * 64}
+                        />
+                    );
+                } 
+                updateTileID(++tileID);
+                break;
+            
+            case tools.ERASER:
+                break;
         }
-        //Draw image tile
-        else{
-            let tile = new window.Image(64, 64);
-            tile.src = props.currentTile.image;
-            newImages.push(
-                <Image
-                    key={tileID} 
-                    image={tile}
-                    x = {Math.floor(mousePos.x / 64 ) * 64}
-                    y = {Math.floor(mousePos.y / 64 ) * 64}
-                />
-            );
-        } 
-        updateTileID(++tileID);
+
         updateImages(newImages);
+
+        
     }
 
     return(
