@@ -8,6 +8,7 @@ import Palette from '../Palette/Palette';
 import classes from './Editor.module.css';
 import Tile from '../../assets/images/grassCenter.png';
 import * as tools from '../ControllerPanel/tools';
+import * as actions from '../../store/actions/editorActions';
 
 const Editor = (props) => {
     
@@ -25,6 +26,10 @@ const Editor = (props) => {
             document.body.className = '';
         });
     });
+
+    useEffect(() =>{
+        props.onAddGrid(50, 50);
+    }, [] );
 
 
     //update position of mouse in state
@@ -106,7 +111,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps =  (dispatch) => {
     return {
-
+        onAddGrid: (rows, columns) => dispatch(actions.addGrid(rows, columns))
     }
 };
 

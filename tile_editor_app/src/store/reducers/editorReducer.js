@@ -1,6 +1,7 @@
 import * as tools from '../../containers/ControllerPanel/tools';
 import * as actionTypes from '../actions/actionsTypes';
 
+import GridTiles from '../../classes/GridTiles';
 import Tile from '../../classes/Tile';
 import image from '../../assets/images/grassCenter.png';
 import image2 from '../../assets/images/grassMid.png';
@@ -10,12 +11,12 @@ let startingTile2 = new Tile(1, image2, '');
 let startingTile3 = new Tile(2, null, 'rgb(0, 180, 245)');
 
 
-
 const initialState = {
     currentTool: tools.MOVE,
     currentTile: null,
     palette: [startingTile, startingTile2, startingTile3],
     tileID: 3,
+    gridTiles: null
 }
 
 const changeTool = (state, action) => {
@@ -49,6 +50,15 @@ const selectTile = (state, action) => {
     return state;
 }
 
+const addGrid = (state, action) => {
+    state = {
+        ...state,
+        gridTiles: new GridTiles(action.dimensions.rows, action.dimensions.columns)
+    }
+    console.log(state.gridTiles);
+    return state;
+}
+
 const addColorTile = (state, action) => {
 
     let newPalette = [...state.palette];
@@ -68,6 +78,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.CHANGE_TOOL : return changeTool(state, action);
         case actionTypes.SELECT_TILE : return selectTile(state, action);
         case actionTypes.ADD_COLOR_TILE: return addColorTile(state, action);
+        case actionTypes.ADD_GRID: return addGrid(state, action);
 
         default : return state;
     };

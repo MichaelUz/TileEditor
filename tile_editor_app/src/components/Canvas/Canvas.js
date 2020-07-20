@@ -6,8 +6,8 @@ import classes from '../../containers/Editor/Editor.module.css';
 
 const Canvas = (props) => {
 
-    const width = window.innerWidth * 2;
-    const height = window.innerHeight * 2;
+    const width = 50 * 64;
+    const height = 50 * 64;
 
     let maxX = Math.floor(width / 64);
     let grid = [];

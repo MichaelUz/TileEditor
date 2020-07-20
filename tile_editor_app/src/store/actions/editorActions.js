@@ -20,3 +20,13 @@ export const addColorTile = (color) => {
         color: color
     }
 }
+
+export const addGrid = (rows, columns) => {
+    return {
+        type: actionTypes.ADD_GRID,
+        dimensions: {
+            rows: rows,
+            columns: columns
+        }
+    }
+}
