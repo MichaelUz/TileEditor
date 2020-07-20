@@ -55,6 +55,18 @@ class ControllerPanel extends Component {
         });
     }
 
+    handleColorPicked = () => {
+
+        let colorString ='rgb(';
+        colorString += this.state.currentColor.r 
+            + ', ' + this.state.currentColor.g 
+                + ', ' + this.state.currentColor.b 
+                    + ', ' + this.state.currentColor.a + ')';
+        
+        this.props.onColorPicked(colorString);
+        this.toolSelectedHandler(tools.COLOR_PICKER);
+    }  
+
     render(){
         let toolButtons = Object.keys(this.mapIconsToTool).map((tool, index) => {
             return(
@@ -77,7 +89,7 @@ class ControllerPanel extends Component {
                     <ColorPicker 
                         currentColor={this.state.currentColor} 
                         handleChange={this.handleChange}
-                        clicked={() => this.toolSelectedHandler(tools.COLOR_PICKER)}
+                        clicked={() => this.handleColorPicked()}
                     /> :
                     null}
             </div>
@@ -93,7 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        onToolChanged: (tool) => dispatch(actions.changeTool(tool))
+        onToolChanged: (tool) => dispatch(actions.changeTool(tool)),
+        onColorPicked: (color) => dispatch(actions.addColorTile(color))
     }
 }
 

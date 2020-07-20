@@ -13,3 +13,10 @@ export const selectTile = (id) => {
         id: id
     }
 }
+
+export const addColorTile = (color) => {
+    return{
+        type: actionTypes.ADD_COLOR_TILE,
+        color: color
+    }
+}

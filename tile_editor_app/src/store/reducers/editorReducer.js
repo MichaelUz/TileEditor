@@ -14,7 +14,8 @@ let startingTile3 = new Tile(2, null, 'rgb(0, 180, 245)');
 const initialState = {
     currentTool: tools.MOVE,
     currentTile: null,
-    palette: [startingTile, startingTile2, startingTile3]
+    palette: [startingTile, startingTile2, startingTile3],
+    tileID: 3,
 }
 
 const changeTool = (state, action) => {
@@ -47,12 +48,26 @@ const selectTile = (state, action) => {
     };
     return state;
 }
+
+const addColorTile = (state, action) => {
+
+    let newPalette = [...state.palette];
+    newPalette.push(new Tile(state.tileID, null, action.color));
+    state = {
+        ...state,
+        palette: newPalette,
+        tileID: ++state.tileID
+    }
+
+    return state;
+}
     
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
         case actionTypes.CHANGE_TOOL : return changeTool(state, action);
         case actionTypes.SELECT_TILE : return selectTile(state, action);
+        case actionTypes.ADD_COLOR_TILE: return addColorTile(state, action);
 
         default : return state;
     };
