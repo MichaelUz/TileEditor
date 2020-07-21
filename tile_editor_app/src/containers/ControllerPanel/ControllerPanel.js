@@ -12,24 +12,27 @@ class ControllerPanel extends Component {
 
     constructor(props){
         super(props);
-        this.toggleStampMode = this.toggleStampMode.bind(this);
+        this.toggleMoveMode = this.toggleMoveMode.bind(this);
     }
 
-    toggleStampMode(event){
+    toggleMoveMode(event){
         if(event.keyCode === 87){
             if (this.props.currentTool === tools.STAMP) this.props.onToolChanged(tools.STAMP_MOVE);
             else if (this.props.currentTool === tools.STAMP_MOVE) this.props.onToolChanged(tools.STAMP);
+
+            if(this.props.currentTool === tools.ERASER) this.props.onToolChanged(tools.ERASER_MOVE);
+            else if (this.props.currentTool === tools.ERASER_MOVE) this.props.onToolChanged(tools.ERASER);
         }
     }
 
     componentDidUpdate(){
-        document.addEventListener("keydown", this.toggleStampMode, false);
+        document.addEventListener("keydown", this.toggleMoveMode, false);
     }
     componentWillUpdate(){
-        document.removeEventListener("keydown", this.toggleStampMode, false);
+        document.removeEventListener("keydown", this.toggleMoveMode, false);
     }
     componentWillUnmount(){
-        document.removeEventListener("keydown", this.toggleStampMode, false);
+        document.removeEventListener("keydown", this.toggleMoveMode, false);
     }
 
     state = {
@@ -54,7 +57,7 @@ class ControllerPanel extends Component {
                 [tools.STAMP]: this.props.currentTool === tools.STAMP_MOVE ? Icons.StampMoveIcon : Icons.StampIcon,
                 [tools.SELECT]: Icons.SelectIcon,
                 [tools.COLOR_PICKER]: Icons.ColorPickerIcon,
-                [tools.ERASER]: Icons.EraserIcon
+                [tools.ERASER]: this.props.currentTool === tools.ERASER_MOVE ? Icons.EraserMoveIcon : Icons.EraserIcon
             }
     }
 
@@ -93,7 +96,6 @@ class ControllerPanel extends Component {
     }  
 
     render(){
-        
         let toolButtons = Object.keys(this.mapIconsToTool()).map((tool, index) => {
             return(
                 <ControllerButton 

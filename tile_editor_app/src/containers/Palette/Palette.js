@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/editorActions';
 import PaletteTile from './PaletteTile/PaletteTile';
 import classes from './Palette.module.css';
-import Tile from '../../assets/images/grassCenter.png';
+import * as tools from '../ControllerPanel/tools';
 
 class Palette extends Component {
+
     render() {
         let tiles = [];
         this.props.myPalette.forEach(tile => {
@@ -36,7 +37,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSelectTile: (id) => dispatch(actions.selectTile(id))
+        onSelectTile: (id) => dispatch(actions.selectTile(id)),
     }
 }
 

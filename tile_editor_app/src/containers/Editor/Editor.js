@@ -33,7 +33,7 @@ const Editor = (props) => {
     let mouseMoveHandler = (event) => {
 
         let stagePos = event.target.getStage().getPointerPosition();
-        if (props.currentTool === tools.STAMP_MOVE) clickHandler();
+        if (props.currentTool === tools.STAMP_MOVE || props.currentTool === tools.ERASER_MOVE) clickHandler();
 
         updateMousePos({
             x: Math.floor(stagePos.x / 64) * 64,
@@ -87,7 +87,7 @@ const Editor = (props) => {
             } 
             updateTileID(++tileID);
         }
-        else if(props.currentTool === tools.ERASER){
+        else if(props.currentTool === tools.ERASER || props.currentTool === tools.ERASER_MOVE){
             newImages = erase();
         }
 
