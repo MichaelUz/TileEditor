@@ -16,7 +16,7 @@ class ControllerPanel extends Component {
     }
 
     toggleMoveMode(event){
-        if(event.keyCode === 87){
+        if(event.keyCode === 87 || event.keyCode === 80){
             if (this.props.currentTool === tools.STAMP) this.props.onToolChanged(tools.STAMP_MOVE);
             else if (this.props.currentTool === tools.STAMP_MOVE) this.props.onToolChanged(tools.STAMP);
 
