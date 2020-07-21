@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Image, Rect } from 'react-konva';
 import { connect } from 'react-redux';
 
@@ -9,6 +9,12 @@ import classes from './Editor.module.css';
 import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
 
+/*
+    StampMode states :
+        -1 - stamp
+         1 - continuous tamp
+*/
+
 const Editor = (props) => {
     
     let [images, updateImages] = useState([]);
@@ -17,23 +23,39 @@ const Editor = (props) => {
         y: 0
     });
     let [tileID, updateTileID] = useState(0);
+    let [stampMode, updateStampMode] = useState(-1);
 
-    //Change background on editor page
-    useEffect(() => {
-        document.body.className = 'noBg';
-        return ( () =>{
-            document.body.className = '';
-        });
-    });
+
+    const onStampToggle = useCallback((event) => {
+        if(event.keyCode === 87 && props.currentTool === tools.STAMP) {
+            updateStampMode(stampMode * -1);
+        }
+      }, [props.currentTool, stampMode]);
 
     useEffect(() =>{
+        document.body.className = 'noBg';
         props.onAddGrid(50, 50);
+
+        return() => {
+            document.body.className = '';
+        }
+        
     }, [] );
+
+    
+    useEffect(() => {
+        document.addEventListener("keydown", onStampToggle, false);
+        return () => {
+            document.removeEventListener("keydown", onStampToggle, false);
+        }
+    }, [props.currentTool, stampMode]);
 
 
     //update position of mouse in state
     let mouseMoveHandler = (event) => {
+
         let stagePos = event.target.getStage().getPointerPosition();
+        if (stampMode === 1) clickHandler();
 
         updateMousePos({
             x: Math.floor(stagePos.x / 64) * 64,
@@ -51,7 +73,7 @@ const Editor = (props) => {
         return newImages;
     }
 
-    let clickHandler = (event) => {
+    let clickHandler = () => {
         if(props.currentTile === null && props.currentTool === tools.STAMP) return;
         let newImages = [...images];
 
@@ -101,7 +123,13 @@ const Editor = (props) => {
 
     return(
             <div className={classes.container}>
-                <Canvas clicked={clickHandler} mouseMoveHandler={mouseMoveHandler} mousePos={mousePos} canMove={props.currentTool === tools.MOVE }>
+                <Canvas
+                    clicked={clickHandler} 
+                    mouseMoveHandler={mouseMoveHandler} 
+                    mousePos={mousePos} 
+                    canMove={props.currentTool === tools.MOVE}
+                        
+                >
                     {images}
                 </Canvas>
                 <div className = {classes.rightPanel}>

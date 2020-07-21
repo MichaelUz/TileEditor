@@ -36,9 +36,19 @@ const Canvas = (props) => {
         )
     }
 
+    let message = () => {
+        console.log('hellloo');
+    }
+
     return(
         <ScrollContainer className = {classes.container} vertical = {props.canMove} horizontal={props.canMove} hideScrollbars = {false}>
-            <Stage onMouseDown={props.clicked} width={width} height={height} onMouseMove={props.mouseMoveHandler}>
+            <Stage
+                onMouseDown={props.clicked}
+                onMouseUp={props.mouseUp}
+                width={width} height={height} 
+                onMouseMove={props.mouseMoveHandler}
+                onDragStart={message}
+                >
                 <Layer>
                     {grid}
                     {props.children}
