@@ -10,6 +10,28 @@ import * as tools from './tools';
 
 class ControllerPanel extends Component {
 
+    constructor(props){
+        super(props);
+        this.toggleStampMode = this.toggleStampMode.bind(this);
+    }
+
+    toggleStampMode(event){
+        if(event.keyCode === 87){
+            if (this.props.currentTool === tools.STAMP) this.props.onToolChanged(tools.STAMP_MOVE);
+            else if (this.props.currentTool === tools.STAMP_MOVE) this.props.onToolChanged(tools.STAMP);
+        }
+    }
+
+    componentDidUpdate(){
+        document.addEventListener("keydown", this.toggleStampMode, false);
+    }
+    componentWillUpdate(){
+        document.removeEventListener("keydown", this.toggleStampMode, false);
+    }
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.toggleStampMode, false);
+    }
+
     state = {
         currentColor : {
             r: 255,
@@ -26,12 +48,14 @@ class ControllerPanel extends Component {
         }
     }
 
-    mapIconsToTool = {
-        [tools.MOVE]: Icons.MoveCursor,
-        [tools.STAMP]: Icons.StampIcon,
-        [tools.SELECT]: Icons.SelectIcon,
-        [tools.COLOR_PICKER]: Icons.ColorPickerIcon,
-        [tools.ERASER]: Icons.EraserIcon
+    mapIconsToTool =  () => {
+            return {
+                [tools.MOVE]: Icons.MoveCursor,
+                [tools.STAMP]: this.props.currentTool === tools.STAMP_MOVE ? Icons.StampMoveIcon : Icons.StampIcon,
+                [tools.SELECT]: Icons.SelectIcon,
+                [tools.COLOR_PICKER]: Icons.ColorPickerIcon,
+                [tools.ERASER]: Icons.EraserIcon
+            }
     }
 
     handleChange = (color, event) => {
@@ -69,13 +93,14 @@ class ControllerPanel extends Component {
     }  
 
     render(){
-        let toolButtons = Object.keys(this.mapIconsToTool).map((tool, index) => {
+        
+        let toolButtons = Object.keys(this.mapIconsToTool()).map((tool, index) => {
             return(
                 <ControllerButton 
                     key={index} 
                     selected={this.state.selected[tool]} 
                     selectable 
-                    image={this.mapIconsToTool[tool]} 
+                    image={this.mapIconsToTool()[tool]} 
                     select ={() => this.toolSelectedHandler(tool)}
                 />
             );

@@ -9,12 +9,6 @@ import classes from './Editor.module.css';
 import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
 
-/*
-    StampMode states :
-        -1 - stamp
-         1 - continuous tamp
-*/
-
 const Editor = (props) => {
     
     let [images, updateImages] = useState([]);
@@ -23,14 +17,6 @@ const Editor = (props) => {
         y: 0
     });
     let [tileID, updateTileID] = useState(0);
-    let [stampMode, updateStampMode] = useState(-1);
-
-
-    const onStampToggle = useCallback((event) => {
-        if(event.keyCode === 87 && props.currentTool === tools.STAMP) {
-            updateStampMode(stampMode * -1);
-        }
-      }, [props.currentTool, stampMode]);
 
     useEffect(() =>{
         document.body.className = 'noBg';
@@ -42,20 +28,12 @@ const Editor = (props) => {
         
     }, [] );
 
-    
-    useEffect(() => {
-        document.addEventListener("keydown", onStampToggle, false);
-        return () => {
-            document.removeEventListener("keydown", onStampToggle, false);
-        }
-    }, [props.currentTool, stampMode]);
-
 
     //update position of mouse in state
     let mouseMoveHandler = (event) => {
 
         let stagePos = event.target.getStage().getPointerPosition();
-        if (stampMode === 1) clickHandler();
+        if (props.currentTool === tools.STAMP_MOVE) clickHandler();
 
         updateMousePos({
             x: Math.floor(stagePos.x / 64) * 64,
@@ -77,48 +55,43 @@ const Editor = (props) => {
         if(props.currentTile === null && props.currentTool === tools.STAMP) return;
         let newImages = [...images];
 
-        switch(props.currentTool){
-            case tools.STAMP:
-                //Draw rect as tile
-                newImages = erase();
-                if(props.currentTile.image === null){
-                    console.log('drawing');
-                    newImages.push(
-                        <Rect
-                            key={tileID}
-                            width={64}
-                            height={64}
-                            x={mousePos.x}
-                            y={mousePos.y}
-                            fill={props.currentTile.color}
-                        />
-                    )
-                }
-                //Draw image tile
-                else{
-                    let tile = new window.Image(64, 64);
-                    tile.src = props.currentTile.image;
-                    newImages.push(
-                        <Image
-                            key={tileID} 
-                            image={tile}
-                            x = {mousePos.x}
-                            y = {mousePos.y}
-                        />
-                    );
-                } 
-                updateTileID(++tileID);
-                break;
-            
-            case tools.ERASER:
-                newImages = erase();
-                break;
-                
+
+        if(props.currentTool === tools.STAMP || props.currentTool === tools.STAMP_MOVE){
+            //Draw rect as tile
+            newImages = erase();
+            if(props.currentTile.image === null){
+                console.log('drawing');
+                newImages.push(
+                    <Rect
+                        key={tileID}
+                        width={64}
+                        height={64}
+                        x={mousePos.x}
+                        y={mousePos.y}
+                        fill={props.currentTile.color}
+                    />
+                )
+            }
+            //Draw image tile
+            else{
+                let tile = new window.Image(64, 64);
+                tile.src = props.currentTile.image;
+                newImages.push(
+                    <Image
+                        key={tileID} 
+                        image={tile}
+                        x = {mousePos.x}
+                        y = {mousePos.y}
+                    />
+                );
+            } 
+            updateTileID(++tileID);
+        }
+        else if(props.currentTool === tools.ERASER){
+            newImages = erase();
         }
 
         updateImages(newImages);
-
-        
     }
 
     return(
@@ -133,7 +106,7 @@ const Editor = (props) => {
                     {images}
                 </Canvas>
                 <div className = {classes.rightPanel}>
-                    <ControllerPanel />
+                    <ControllerPanel/>
                     <Palette/>
                 </div>     
             </div>
