@@ -52,7 +52,7 @@ const Editor = (props) => {
     }
 
     let clickHandler = () => {
-        if(props.currentTile === null && props.currentTool === tools.STAMP) return;
+        if(props.currentTile === null && (props.currentTool === tools.STAMP || props.currentTool === tools.STAMP_MOVE)) return;
         let newImages = [...images];
 
 
