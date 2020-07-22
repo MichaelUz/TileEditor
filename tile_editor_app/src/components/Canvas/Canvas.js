@@ -52,6 +52,7 @@ const Canvas = (props) => {
                 <Layer>
                     {grid}
                     {props.children}
+                    {props.selectRect}
                     {props.canMove ? null : 
                         <Rect
                             x={Math.floor(props.mousePos.x / 64) * 64}
