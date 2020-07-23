@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Image, Rect } from 'react-konva';
 import { connect } from 'react-redux';
+import {v4 as uuidv4} from 'uuid';
 
 import Canvas from '../../components/Canvas/Canvas';
 import ControllerPanel from '../ControllerPanel/ControllerPanel';
@@ -74,7 +75,7 @@ const Editor = (props) => {
         if(props.currentTile.image === null){
             image = (
                 <Rect
-                    key={tileID}
+                    key={uuidv4()}
                     width={64}
                     height={64}
                     x={x}
@@ -88,27 +89,17 @@ const Editor = (props) => {
             tile.src = props.currentTile.image;
             image = (
                 <Image
-                    key={tileID} 
+                    key={uuidv4()} 
                     image={tile}
                     x = {x}
                     y = {y}
                 />
             );
         } 
-        //updateTileID(++tileID);
         return image;
     }
 
     let clickHandler = () => {
-        if(selectInfo.selected && selectInfo.selectCount === 2){
-            updateSelectInfo(initialSelectState);
-        }
-
-        if(selectInfo.selected && !(mousePos.x < selectInfo.secondClick.x && mousePos.x >= selectInfo.firstClick.x && mousePos.y < selectInfo.secondClick.y &&
-            mousePos.y >= selectInfo.firstClick.y)){
-                updateSelectInfo(initialSelectState);
-                return;
-        }
         if(props.currentTile === null && (props.currentTool === tools.STAMP || props.currentTool === tools.STAMP_MOVE)) return;
 
         let newImages = [...images];
@@ -122,6 +113,7 @@ const Editor = (props) => {
                         newImages.push(drawImage(i, j));
                     }
                 }
+                updateSelectInfo(initialSelectState);
             }
 
         }
@@ -130,6 +122,11 @@ const Editor = (props) => {
         }
 
         else if (props.currentTool === tools.SELECT){
+            if(selectInfo.selected && (mousePos.x < selectInfo.secondClick.x && mousePos.x >= selectInfo.firstClick.x && mousePos.y < selectInfo.secondClick.y &&
+                mousePos.y >= selectInfo.firstClick.y) && selectInfo.selectCount === 2){
+                    updateSelectInfo(initialSelectState);
+                    return;
+            }
             selectInfo.selectCount = ++selectInfo.selectCount;
 
             if(selectInfo.selectCount === 1){
