@@ -62,7 +62,6 @@ const Canvas = (props) => {
                             fill= 'rgba(3, 180, 50, 0.1)'
                         />
                     }
-                    <GridCursor/>
                 </Layer>
             </Stage>
         </ScrollContainer>
