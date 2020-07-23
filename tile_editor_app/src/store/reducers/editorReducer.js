@@ -16,7 +16,11 @@ const initialState = {
     currentTile: null,
     palette: [startingTile, startingTile2, startingTile3],
     tileID: 3,
-    gridTiles: null
+    gridTiles: null,
+    mousePos: {
+        x: 0,
+        y: 0
+    }
 }
 
 const changeTool = (state, action) => {
@@ -70,6 +74,18 @@ const addColorTile = (state, action) => {
 
     return state;
 }
+
+const updateMousePos = (state, action) => {
+    state = {
+        ... state,
+        mousePos: {
+            x: action.mousePos.x,
+            y: action.mousePos.y
+        }
+    }
+
+    return state;
+}
     
 
 const reducer = (state = initialState, action) => {
@@ -78,6 +94,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SELECT_TILE : return selectTile(state, action);
         case actionTypes.ADD_COLOR_TILE: return addColorTile(state, action);
         case actionTypes.ADD_GRID: return addGrid(state, action);
+        case actionTypes.UPDATE_MOUSE_POS: return updateMousePos(state, action);
 
         default : return state;
     };

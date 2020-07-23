@@ -30,3 +30,13 @@ export const addGrid = (rows, columns) => {
         }
     }
 }
+
+export const updateMousePos = (x, y) => {
+    return{
+        type: actionTypes.UPDATE_MOUSE_POS,
+        mousePos: {
+            x: x,
+            y: y
+        }
+    }
+}

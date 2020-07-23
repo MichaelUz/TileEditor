@@ -57,6 +57,8 @@ const Editor = (props) => {
             x: Math.floor(stagePos.x / 64) * 64,
             y: Math.floor(stagePos.y / 64) * 64
         };
+
+        props.onUpdateMousePos(mousePos.x, mousePos.y);
     }
 
     let erase = () => {
@@ -75,6 +77,7 @@ const Editor = (props) => {
         if(props.currentTile.image === null){
             image = (
                 <Rect
+                    transformsEnabled={'position'}
                     key={uuidv4()}
                     width={64}
                     height={64}
@@ -203,7 +206,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps =  (dispatch) => {
     return {
-        onAddGrid: (rows, columns) => dispatch(actions.addGrid(rows, columns))
+        onAddGrid: (rows, columns) => dispatch(actions.addGrid(rows, columns)),
+        onUpdateMousePos: (x, y) => dispatch(actions.updateMousePos(x, y))
     }
 };
 

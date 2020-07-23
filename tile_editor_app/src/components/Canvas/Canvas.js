@@ -3,6 +3,7 @@ import { Stage, Layer, Line, Image, Rect} from 'react-konva';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 import classes from '../../containers/Editor/Editor.module.css';
+import GridCursor from './GridCursor/GridCursor';
 
 const Canvas = (props) => {
 
@@ -38,7 +39,6 @@ const Canvas = (props) => {
         )
     }
 
-
     return(
         <ScrollContainer className = {classes.container} vertical = {props.canMove} horizontal={props.canMove} hideScrollbars = {false}>
             <Stage
@@ -62,6 +62,7 @@ const Canvas = (props) => {
                             fill= 'rgba(3, 180, 50, 0.1)'
                         />
                     }
+                    <GridCursor/>
                 </Layer>
             </Stage>
         </ScrollContainer>
