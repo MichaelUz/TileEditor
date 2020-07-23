@@ -101,7 +101,6 @@ class ControllerPanel extends Component {
     }  
 
     render(){
-        console.log('rendered');
         let toolButtons = Object.keys(this.mapIconsToTool()).map((tool, index) => {
             return(
                 <ControllerButton 

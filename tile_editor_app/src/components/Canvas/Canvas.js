@@ -6,6 +6,8 @@ import classes from '../../containers/Editor/Editor.module.css';
 
 const Canvas = (props) => {
 
+
+    console.log('canvas rerendering');
     const width = 50 * 64;
     const height = 50 * 64;
 
@@ -36,9 +38,6 @@ const Canvas = (props) => {
         )
     }
 
-    let message = () => {
-        console.log('hellloo');
-    }
 
     return(
         <ScrollContainer className = {classes.container} vertical = {props.canMove} horizontal={props.canMove} hideScrollbars = {false}>
@@ -47,8 +46,7 @@ const Canvas = (props) => {
                 onMouseUp={props.mouseUp}
                 width={width} height={height} 
                 onMouseMove={props.mouseMoveHandler}
-                onDragStart={message}
-                >
+            >
                 <Layer>
                     {grid}
                     {props.children}
