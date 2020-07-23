@@ -25,6 +25,11 @@ class ControllerPanel extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        if (nextProps.currentTool !== this.props.currentTool) return true;
+        else return false;
+    }
+
     componentDidUpdate(){
         document.addEventListener("keydown", this.toggleMoveMode, false);
     }
@@ -96,6 +101,7 @@ class ControllerPanel extends Component {
     }  
 
     render(){
+        console.log('rendered');
         let toolButtons = Object.keys(this.mapIconsToTool()).map((tool, index) => {
             return(
                 <ControllerButton 
