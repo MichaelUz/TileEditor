@@ -49,13 +49,16 @@ const Editor = (props) => {
 
     //update position of mouse in state
     let mouseMoveHandler = (event) => {
+        console.log('mmhandler');
         let stagePos = event.target.getStage().getPointerPosition();
-        if (props.currentTool === tools.STAMP_MOVE || props.currentTool === tools.ERASER_MOVE) clickHandler();
-
         mousePos = {
             x: Math.floor(stagePos.x / 64) * 64,
             y: Math.floor(stagePos.y / 64) * 64
         };
+
+        props.onUpdateMousePos(mousePos.x, mousePos.y);
+
+        if (props.currentTool === tools.STAMP_MOVE || props.currentTool === tools.ERASER_MOVE) clickHandler();        
     }
 
     let erase = () => {
