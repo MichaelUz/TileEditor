@@ -11,8 +11,8 @@ const GridCursor = (props) => {
 
     let onMouseUpdate = (e) => {
         updateMousePos({
-            x: e.pageX - 32,
-            y: e.pageY - 32
+            x: Math.floor(e.pageX /64) * 64,
+            y: Math.floor(e.pageY / 64) * 64
         });
         
     }
@@ -25,7 +25,7 @@ const GridCursor = (props) => {
     }, []);
     
     
-    console.log('rendering grid cursor');
+    console.log(props.mousePos);
 
     let style = {
         position: 'fixed',
@@ -39,8 +39,8 @@ const GridCursor = (props) => {
     
     return (
         <Rect
-            x={props.mousePos.x}
-            y={props.mousePos.y}
+            x={mousePos.x}
+            y={mousePos.y}
             stroke = 'rgba(3, 227, 99, 50)'
             width={64}
             height={64}
@@ -50,10 +50,5 @@ const GridCursor = (props) => {
     );
 }
 
-const mapStateToProps = (state) => {
-    return{
-        mousePos: state.mousePos
-    }
-}
 
-export default connect(mapStateToProps)(GridCursor);
+export default GridCursor;

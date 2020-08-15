@@ -49,7 +49,6 @@ const Editor = (props) => {
 
     //update position of mouse in state
     let mouseMoveHandler = (event) => {
-
         let stagePos = event.target.getStage().getPointerPosition();
         if (props.currentTool === tools.STAMP_MOVE || props.currentTool === tools.ERASER_MOVE) clickHandler();
 
@@ -57,8 +56,6 @@ const Editor = (props) => {
             x: Math.floor(stagePos.x / 64) * 64,
             y: Math.floor(stagePos.y / 64) * 64
         };
-
-        props.onUpdateMousePos(mousePos.x, mousePos.y);
     }
 
     let erase = () => {
@@ -180,10 +177,8 @@ const Editor = (props) => {
                 <Canvas
                     clicked={clickHandler} 
                     mouseMoveHandler={mouseMoveHandler} 
-                    mousePos={mousePos} 
                     canMove={props.currentTool === tools.MOVE}
-                    selectRect={selectInfo.selectRect}
-                        
+                    selectRect={selectInfo.selectRect}      
                 >
                     {images}
                 </Canvas>

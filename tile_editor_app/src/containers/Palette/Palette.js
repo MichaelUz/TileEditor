@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/editorActions';
 import PaletteTile from './PaletteTile/PaletteTile';
 import classes from './Palette.module.css';
-import * as tools from '../ControllerPanel/tools';
 
 class Palette extends Component {
 
