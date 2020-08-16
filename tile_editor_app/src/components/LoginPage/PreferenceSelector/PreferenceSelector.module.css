@@ -35,6 +35,7 @@
     border-width: 0px;
     color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .nextButton:hover{

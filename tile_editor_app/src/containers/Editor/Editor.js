@@ -11,7 +11,7 @@ import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
 
 const Editor = (props) => {
-    
+
     console.log('editor re rendering');
     let cellSize = props.dimensions.cellSize
 
