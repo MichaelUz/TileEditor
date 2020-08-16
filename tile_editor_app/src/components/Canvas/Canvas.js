@@ -12,8 +12,6 @@ const Canvas = (props) => {
     const width = 50 * 64;
     const height = 50 * 64;
 
-
-
     let maxX = Math.floor(width / 64);
     let grid = [];
 

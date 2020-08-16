@@ -26,8 +26,9 @@ class ControllerPanel extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        if (nextProps.currentTool !== this.props.currentTool) return true;
-        else return false;
+        if(nextProps.currentTool !== this.props.currentTool) return true;
+        if(nextState.currentColor !== this.state.currentColor) return true;
+        return false;
     }
 
     componentDidUpdate(){
@@ -67,6 +68,7 @@ class ControllerPanel extends Component {
     }
 
     handleChange = (color, event) => {
+        console.log('changing color');
         this.setState({currentColor : color.rgb});
     }
 
@@ -101,6 +103,7 @@ class ControllerPanel extends Component {
     }  
 
     render(){
+        console.log('rendering panel');
         let toolButtons = Object.keys(this.mapIconsToTool()).map((tool, index) => {
             return(
                 <ControllerButton 
