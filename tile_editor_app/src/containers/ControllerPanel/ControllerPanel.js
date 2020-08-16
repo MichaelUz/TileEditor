@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CSVLink } from 'react-csv';
 
 import ColorPicker from '../../components/ColorPicker/ColorPicker';
 import ControllerButton from '../../components/ControllerButton/ControllerButton';
@@ -70,7 +71,6 @@ class ControllerPanel extends Component {
     }
 
     handleChange = (color, event) => {
-        console.log('changing color');
         this.setState({currentColor : color.rgb});
     }
 
@@ -125,7 +125,9 @@ class ControllerPanel extends Component {
             <div className = {classes.panel}>
                 {toolButtons}
                 <ControllerButton selectable={false} image = {Icons.ExportIcon} select = {()=> null}/>
-                <ControllerButton selectable={false} image = {Icons.DownloadIcon} select = {()=> null}/>
+                <CSVLink data={this.props.gridTiles.csvData} filename={'myTiles.csv'} enclosingCharacter=''>
+                    <ControllerButton selectable={false} image = {Icons.DownloadIcon} select = {()=> null}/>
+                </CSVLink>
                 {this.state.selected[tools.COLOR_PICKER] ? 
                     <ColorPicker 
                         currentColor={this.state.currentColor} 
@@ -140,7 +142,8 @@ class ControllerPanel extends Component {
 
 const mapStateToProps = state => {
     return{
-        currentTool: state.currentTool
+        currentTool: state.currentTool,
+        gridTiles: state.gridTiles
     }
 }
 

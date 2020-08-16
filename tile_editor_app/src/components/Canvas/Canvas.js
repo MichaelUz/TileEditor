@@ -8,7 +8,6 @@ import GridCursor from './GridCursor/GridCursor';
 
 const Canvas = (props) => {
 
-    console.log('canvas rerendering');
     let cellSize = props.dimensions.cellSize;
     const width = props.dimensions.columns * cellSize;
     const height = props.dimensions.rows * cellSize;

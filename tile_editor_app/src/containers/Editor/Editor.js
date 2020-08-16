@@ -12,7 +12,6 @@ import * as actions from '../../store/actions/editorActions';
 
 const Editor = (props) => {
 
-    console.log('editor re rendering');
     let cellSize = props.dimensions.cellSize
 
     let [images, updateImages] = useState([]);

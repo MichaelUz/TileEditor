@@ -6,9 +6,9 @@ import Tile from '../../classes/Tile';
 import image from '../../assets/images/grassCenter.png';
 import image2 from '../../assets/images/grassMid.png';
 
-let startingTile = new Tile(0, image, '');
-let startingTile2 = new Tile(1, image2, '');
-let startingTile3 = new Tile(2, null, 'rgb(0, 180, 245)');
+let startingTile = new Tile(1, image, '');
+let startingTile2 = new Tile(2, image2, '');
+let startingTile3 = new Tile(3, null, 'rgb(0, 180, 245)');
 
 
 const initialState = {
@@ -20,8 +20,9 @@ const initialState = {
     currentTool: tools.MOVE,
     currentTile: null,
     palette: [startingTile, startingTile2, startingTile3],
-    tileID: 3,
-    gridTiles: null,
+    tileID: 4,
+    gridTiles: new GridTiles(10, 10),
+    csvData: null,
     mousePos: {
         x: 0,
         y: 0
@@ -70,7 +71,8 @@ const selectTile = (state, action) => {
 const addGrid = (state, action) => {
     state = {
         ...state,
-        gridTiles: new GridTiles(state.dimensions.rows, state.dimensions.columns)
+        gridTiles: new GridTiles(state.dimensions.rows, state.dimensions.columns),
+        csvData: [],
     }
     return state;
 }
@@ -116,9 +118,6 @@ const addTileGrid = (state, action) => {
         ...state,
         gridTiles: myGridTiles
     }
-
-    console.log(myGridTiles.grid);
-
     return state;
 }
 
@@ -132,7 +131,6 @@ const removeTileGrid = (state, action) => {
         j: Math.floor(action.position.x / cellSize)
     }
     myGridTiles.removeTile(pos.i, pos.j);
-    console.log(myGridTiles.grid);
     return state;
 }
 
