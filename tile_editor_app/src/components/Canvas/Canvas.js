@@ -9,14 +9,14 @@ import GridCursor from './GridCursor/GridCursor';
 const Canvas = (props) => {
 
     console.log('canvas rerendering');
-    const width = 50 * 64;
-    const height = 50 * 64;
+    const width = props.dimensions.columns * 64;
+    const height = props.dimensions.rows * 64;
 
     let maxX = Math.floor(width / 64);
     let grid = [];
 
     //Draw grid
-    for(let i = 0; i < width; i += 64){
+    for(let i = 0; i <= width; i += 64){
         grid.push(
             <Line
                 key = { i }
@@ -27,7 +27,7 @@ const Canvas = (props) => {
             />
         )
     }
-    for(let i = 0; i < height; i += 64){
+    for(let i = 0; i <= height; i += 64){
         grid.push(
             <Line
                 key = { i + maxX }
@@ -68,4 +68,10 @@ const Canvas = (props) => {
     );
 }
 
-export default Canvas;
+const mapStateToProps = (state) => {
+    return {
+        dimensions : state.dimensions
+    }
+}
+
+export default connect(mapStateToProps)(Canvas);

@@ -49,7 +49,6 @@ const Editor = (props) => {
 
     //update position of mouse in state
     let mouseMoveHandler = (event) => {
-        console.log('mmhandler');
         let stagePos = event.target.getStage().getPointerPosition();
         mousePos = {
             x: Math.floor(stagePos.x / 64) * 64,

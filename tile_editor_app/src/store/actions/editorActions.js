@@ -40,3 +40,10 @@ export const updateMousePos = (x, y) => {
         }
     }
 }
+
+export const setDimensions = (dimensions) => {
+    return {
+        type: actionTypes.SET_DIMENSIONS,
+        dimensions: dimensions
+    }
+}

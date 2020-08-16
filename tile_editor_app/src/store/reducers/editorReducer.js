@@ -12,6 +12,10 @@ let startingTile3 = new Tile(2, null, 'rgb(0, 180, 245)');
 
 
 const initialState = {
+    dimensions: {
+        rows: 10, 
+        columns: 10
+    },
     currentTool: tools.MOVE,
     currentTile: null,
     palette: [startingTile, startingTile2, startingTile3],
@@ -21,6 +25,15 @@ const initialState = {
         x: 0,
         y: 0
     }
+}
+
+const setDimensions = (state, action) => {
+    state = {
+        ...state,
+        dimensions: {...action.dimensions}
+    }
+    console.log('new dimensions', state.dimensions);
+    return state;
 }
 
 const changeTool = (state, action) => {
@@ -95,6 +108,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ADD_COLOR_TILE: return addColorTile(state, action);
         case actionTypes.ADD_GRID: return addGrid(state, action);
         case actionTypes.UPDATE_MOUSE_POS: return updateMousePos(state, action);
+        case actionTypes.SET_DIMENSIONS: return setDimensions(state, action);
 
         default : return state;
     };
