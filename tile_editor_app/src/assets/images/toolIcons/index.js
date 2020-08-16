@@ -7,7 +7,8 @@ import DownloadIcon from './downloadIcon.png';
 import EraserIcon from './eraserIcon.png';
 import StampMoveIcon from './stampMoveIcon.png';
 import EraserMoveIcon from './eraserMoveIcon.png';
+import ClearIcon from './clearIcon.png'
 
 export default {
-    MoveCursor, StampIcon, SelectIcon, ColorPickerIcon, ExportIcon, DownloadIcon, EraserIcon, StampMoveIcon, EraserMoveIcon
+    MoveCursor, StampIcon, SelectIcon, ColorPickerIcon, ExportIcon, DownloadIcon, EraserIcon, StampMoveIcon, EraserMoveIcon, ClearIcon
 };

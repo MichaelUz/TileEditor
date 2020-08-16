@@ -53,7 +53,8 @@ class ControllerPanel extends Component {
             [tools.STAMP]: false,
             [tools.SELECT]: false,
             [tools.COLOR_PICKER]: false,
-            [tools.ERASER]: false
+            [tools.ERASER]: false,
+            [tools.CLEAR]: false
         }
     }
 
@@ -63,7 +64,8 @@ class ControllerPanel extends Component {
                 [tools.STAMP]: this.props.currentTool === tools.STAMP_MOVE ? Icons.StampMoveIcon : Icons.StampIcon,
                 [tools.SELECT]: Icons.SelectIcon,
                 [tools.COLOR_PICKER]: Icons.ColorPickerIcon,
-                [tools.ERASER]: this.props.currentTool === tools.ERASER_MOVE ? Icons.EraserMoveIcon : Icons.EraserIcon
+                [tools.ERASER]: this.props.currentTool === tools.ERASER_MOVE ? Icons.EraserMoveIcon : Icons.EraserIcon,
+                [tools.CLEAR]: Icons.ClearIcon
             }
     }
 

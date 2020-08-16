@@ -5,4 +5,5 @@ export const SELECT = 'SELECT';
 export const COLOR_PICKER = 'COLOR_PICKER';
 export const ERASER = 'ERASER';
 export const ERASER_MOVE = 'ERASER_MOVE';
+export const CLEAR = 'CLEAR';
 export const NONE = 'NONE';
