@@ -9,6 +9,7 @@ import Palette from '../Palette/Palette';
 import classes from './Editor.module.css';
 import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
+import Button from '../../components/Button/Button';
 
 const Editor = (props) => {
 
@@ -201,6 +202,9 @@ const Editor = (props) => {
                 <div className = {classes.rightPanel}>
                     <ControllerPanel clearAll={clearAll}/>
                     <Palette/>
+                    <Button bgColor='rgba(100, 0, 170, 1)'>
+                        Edit Palette
+                    </Button>
                 </div>     
             </div>
              

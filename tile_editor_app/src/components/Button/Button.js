@@ -1,16 +1,11 @@
 import React from 'react';
 
+import classes from './Button.module.css';
+
 const Button = (props) => {
 
-    style ={
-        borderRadius: 10,
-        backgroundColor: props.bgColor,
-        color: 'green',
-        fontSize: 'large',
-        padding: 5
-    }
     return(
-        <button>
+        <button className={classes.button} onClick={props.clicked}>
             {props.children}
         </button>
     );
