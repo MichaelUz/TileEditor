@@ -21,13 +21,9 @@ export const addColorTile = (color) => {
     }
 }
 
-export const addGrid = (rows, columns) => {
+export const addGrid = () => {
     return {
         type: actionTypes.ADD_GRID,
-        dimensions: {
-            rows: rows,
-            columns: columns
-        }
     }
 }
 
@@ -55,7 +51,6 @@ export const addImageTile = (image) => {
     }
 }
 
-
 export const addTileGrid = (x, y) => {
     return{
         type: actionTypes.ADD_TILE_GRID,
@@ -63,5 +58,17 @@ export const addTileGrid = (x, y) => {
             x: x,
             y: y
         }
+    }
+}
+
+
+export const removeTileGrid = (clear, x, y) => {
+    return {
+        type: actionTypes.REMOVE_TILE_GRID,
+        position: {
+            x: x, 
+            y: y
+        },
+        clear: clear
     }
 }

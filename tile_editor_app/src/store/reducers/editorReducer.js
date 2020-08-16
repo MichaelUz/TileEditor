@@ -33,7 +33,6 @@ const setDimensions = (state, action) => {
         ...state,
         dimensions: {...action.dimensions}
     }
-    console.log('new dimensions', state.dimensions);
     return state;
 }
 
@@ -71,7 +70,7 @@ const selectTile = (state, action) => {
 const addGrid = (state, action) => {
     state = {
         ...state,
-        gridTiles: new GridTiles(action.dimensions.rows, action.dimensions.columns)
+        gridTiles: new GridTiles(state.dimensions.rows, state.dimensions.columns)
     }
     return state;
 }
@@ -106,13 +105,11 @@ const addTileGrid = (state, action) => {
 
     const cellSize = state.dimensions.cellSize;
 
-    console.log(action.position);
     let pos = {
         i: Math.floor(action.position.y / cellSize),
         j: Math.floor(action.position.x / cellSize)
     }
 
-    console.log(myGridTiles);
     myGridTiles.addTile(myTile, pos.i, pos.j);
 
     state = {
@@ -120,7 +117,22 @@ const addTileGrid = (state, action) => {
         gridTiles: myGridTiles
     }
 
+    console.log(myGridTiles.grid);
 
+    return state;
+}
+
+const removeTileGrid = (state, action) => {
+
+    if(action.clear) return addGrid(state);
+    const cellSize = state.dimensions.cellSize;
+    let myGridTiles = state.gridTiles;
+    let pos = {
+        i: Math.floor(action.position.y / cellSize),
+        j: Math.floor(action.position.x / cellSize)
+    }
+    myGridTiles.removeTile(pos.i, pos.j);
+    console.log(myGridTiles.grid);
     return state;
 }
 
@@ -147,6 +159,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SET_DIMENSIONS: return setDimensions(state, action);
         case actionTypes.ADD_IMAGE_TILE: return addImageTile(state, action);
         case actionTypes.ADD_TILE_GRID: return addTileGrid(state, action);
+        case actionTypes.REMOVE_TILE_GRID: return removeTileGrid(state, action);
 
         default : return state;
     };

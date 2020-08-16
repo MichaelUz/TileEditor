@@ -38,7 +38,7 @@ const Editor = (props) => {
 
     useEffect(() =>{
         document.body.className = 'noBg';
-        props.onAddGrid(props.dimensions.rows, props.dimensions.columns);
+        props.onAddGrid();
 
         return() => {
             document.body.className = '';
@@ -66,12 +66,17 @@ const Editor = (props) => {
             if (!(image.props.x === mousePos.x && image.props.y === mousePos.y)){
                 newImages.push(image);
             }
+            else{
+                props.onRemoveTileGrid(false, mousePos.x, mousePos.y);
+            }
         });
         return newImages;
     }
 
     let drawImage = (x, y) => {
         
+        
+
         let image = null;
         if(props.currentTile.image === null){
             image = (
@@ -106,16 +111,18 @@ const Editor = (props) => {
     let clearAll = () => {
         if(window.confirm('Are you sure you want to clear everything on the canvas ?')){
             updateImages([]);
+            props.onRemoveTileGrid(true);
         }
     }
  
     let clickHandler = () => {
         if(props.currentTile === null && (props.currentTool === tools.STAMP || props.currentTool === tools.STAMP_MOVE)) return;
 
-        let newImages = [...images];
+        let newImages = [...images]
+
         if(props.currentTool === tools.STAMP || props.currentTool === tools.STAMP_MOVE){
-            
             if(!selectInfo.selected) {
+                newImages = erase();
                 newImages.push(drawImage(mousePos.x, mousePos.y));
             }else{
                 for(let i = selectInfo.firstClick.x; i < selectInfo.secondClick.x; i+= cellSize){
@@ -214,7 +221,8 @@ const mapDispatchToProps =  (dispatch) => {
     return {
         onAddGrid: (rows, columns) => dispatch(actions.addGrid(rows, columns)),
         onUpdateMousePos: (x, y) => dispatch(actions.updateMousePos(x, y)),
-        onAddTileGrid: (x, y) => dispatch(actions.addTileGrid(x, y))
+        onAddTileGrid: (x, y) => dispatch(actions.addTileGrid(x, y)),
+        onRemoveTileGrid: (clear, x, y) =>  dispatch(actions.removeTileGrid(clear, x, y))
     }
 };
 
