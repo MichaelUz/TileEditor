@@ -1,3 +1,17 @@
 .createAcc{
     color: rgb(150, 150, 150);
 }
+
+.TitleText{
+    margin: 1px;
+    color: rgb(3, 227, 99);
+    font-size: 600%;
+    font-weight: bold;
+}
+
+hr{
+    color: rgb(3, 227, 99);
+    border-style: solid;
+    width: 300px;
+    margin: 15px auto;
+  }

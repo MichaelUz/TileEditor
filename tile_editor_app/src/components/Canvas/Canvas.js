@@ -9,14 +9,15 @@ import GridCursor from './GridCursor/GridCursor';
 const Canvas = (props) => {
 
     console.log('canvas rerendering');
-    const width = props.dimensions.columns * 64;
-    const height = props.dimensions.rows * 64;
+    let cellSize = props.dimensions.cellSize;
+    const width = props.dimensions.columns * cellSize;
+    const height = props.dimensions.rows * cellSize;
 
-    let maxX = Math.floor(width / 64);
+    let maxX = Math.floor(width / cellSize);
     let grid = [];
 
     //Draw grid
-    for(let i = 0; i <= width; i += 64){
+    for(let i = 0; i <= width; i += cellSize){
         grid.push(
             <Line
                 key = { i }
@@ -27,7 +28,7 @@ const Canvas = (props) => {
             />
         )
     }
-    for(let i = 0; i <= height; i += 64){
+    for(let i = 0; i <= height; i += cellSize){
         grid.push(
             <Line
                 key = { i + maxX }

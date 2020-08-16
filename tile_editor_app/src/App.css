@@ -29,19 +29,6 @@ body.noBg{
   background-image: none;
 }
 
-.TitleText{
-  color: rgb(3, 227, 99);
-  font-size: 600%;
-  font-weight: bold;
-}
-
-hr{
-  color: rgb(3, 227, 99);
-  border-style: solid;
-  width: 300px;
-  margin: 30px auto;
-}
-
 .tilesLogo{
   margin-top: 10px;
   margin-bottom: 30px;

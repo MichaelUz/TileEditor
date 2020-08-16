@@ -14,7 +14,8 @@ let startingTile3 = new Tile(2, null, 'rgb(0, 180, 245)');
 const initialState = {
     dimensions: {
         rows: 10, 
-        columns: 10
+        columns: 10,
+        cellSize: 64
     },
     currentTool: tools.MOVE,
     currentTile: null,

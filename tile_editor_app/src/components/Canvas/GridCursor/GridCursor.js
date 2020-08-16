@@ -3,14 +3,16 @@ import { Rect } from 'react-konva';
 import { connect } from 'react-redux';
 
 const GridCursor = (props) => {
+
+    let cellSize = props.dimensions.cellSize;
         
     return (
         <Rect
             x={props.mousePos.x}
             y={props.mousePos.y}
             stroke = 'rgba(3, 227, 99, 50)'
-            width={64}
-            height={64}
+            width={cellSize}
+            height={cellSize}
             strokeWidth={1}
             fill= 'rgba(3, 180, 50, 0.1)'
         />
@@ -19,7 +21,8 @@ const GridCursor = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        mousePos: state.mousePos
+        mousePos: state.mousePos,
+        dimensions: state.dimensions
     }
 }
 
