@@ -20,7 +20,6 @@ const Editor = (props) => {
         x: 0,
         y: 0
     }
-    let [tileID, updateTileID] = useState(0);
 
     let initialSelectState = {
         selectCount: 0,
