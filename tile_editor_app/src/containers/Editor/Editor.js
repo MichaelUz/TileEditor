@@ -102,6 +102,12 @@ const Editor = (props) => {
         return image;
     }
 
+    let clearAll = () => {
+        if(window.confirm('Are you sure you want to clear everything on the canvas ?')){
+            updateImages([]);
+        }
+    }
+ 
     let clickHandler = () => {
         if(props.currentTile === null && (props.currentTool === tools.STAMP || props.currentTool === tools.STAMP_MOVE)) return;
 
@@ -186,7 +192,7 @@ const Editor = (props) => {
                     {images}
                 </Canvas>
                 <div className = {classes.rightPanel}>
-                    <ControllerPanel/>
+                    <ControllerPanel clearAll={clearAll}/>
                     <Palette/>
                 </div>     
             </div>

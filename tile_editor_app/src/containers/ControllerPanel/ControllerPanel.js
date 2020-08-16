@@ -75,6 +75,7 @@ class ControllerPanel extends Component {
     }
 
     toolSelectedHandler = (tool) => {
+
         let newSelected = {...this.state.selected};
         let keys = Object.keys(newSelected);
         for(let i = 0; i < keys.length; i++){
@@ -93,7 +94,6 @@ class ControllerPanel extends Component {
     }
 
     handleColorPicked = () => {
-
         let colorString ='rgb(';
         colorString += this.state.currentColor.r 
             + ', ' + this.state.currentColor.g 
@@ -105,15 +105,18 @@ class ControllerPanel extends Component {
     }  
 
     render(){
-        console.log('rendering panel');
         let toolButtons = Object.keys(this.mapIconsToTool()).map((tool, index) => {
+            let selectable = true;
+            let handler = this.toolSelectedHandler;
+            if(tool === tools.CLEAR) selectable = false;
+            if(tool === tools.CLEAR) handler = this.props.clearAll;
             return(
                 <ControllerButton 
                     key={index} 
                     selected={this.state.selected[tool]} 
-                    selectable 
+                    selectable={selectable}
                     image={this.mapIconsToTool()[tool]} 
-                    select ={() => this.toolSelectedHandler(tool)}
+                    select ={() => handler(tool)}
                 />
             );
         });
