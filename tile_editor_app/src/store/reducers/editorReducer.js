@@ -89,6 +89,17 @@ const addColorTile = (state, action) => {
     return state;
 }
 
+const addImageTile = (state, action) => {
+    let newPalette = [...state.palette];
+    newPalette.push(new Tile(state.tileID, action.image, ''));
+    state = {
+        ...state,
+        palette: newPalette,
+        tileID: ++state.tileID
+    }
+    return state;
+}
+
 const updateMousePos = (state, action) => {
     state = {
         ... state,
@@ -110,6 +121,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ADD_GRID: return addGrid(state, action);
         case actionTypes.UPDATE_MOUSE_POS: return updateMousePos(state, action);
         case actionTypes.SET_DIMENSIONS: return setDimensions(state, action);
+        case actionTypes.ADD_IMAGE_TILE: return addImageTile(state, action);
 
         default : return state;
     };

@@ -5,6 +5,7 @@ import * as actions from '../../store/actions/editorActions';
 import PaletteTile from './PaletteTile/PaletteTile';
 import classes from './Palette.module.css';
 
+
 class Palette extends Component {
 
     render() {
@@ -17,7 +18,7 @@ class Palette extends Component {
 
         return (
             <div>
-                <h3>Palette</h3>
+                {!this.props.hideTitle ? <h3>Palette</h3> : null}
                 <div className={classes.Palette}>
                     {tiles}
                 </div>

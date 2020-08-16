@@ -47,3 +47,10 @@ export const setDimensions = (dimensions) => {
         dimensions: dimensions
     }
 }
+
+export const addImageTile = (image) => {
+    return{
+        type: actionTypes.ADD_IMAGE_TILE,
+        image: image
+    }
+}
