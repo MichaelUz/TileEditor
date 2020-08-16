@@ -100,6 +100,30 @@ const addImageTile = (state, action) => {
     return state;
 }
 
+const addTileGrid = (state, action) => {
+    let myGridTiles = state.gridTiles;
+    let myTile = state.currentTile;
+
+    const cellSize = state.dimensions.cellSize;
+
+    console.log(action.position);
+    let pos = {
+        i: Math.floor(action.position.y / cellSize),
+        j: Math.floor(action.position.x / cellSize)
+    }
+
+    console.log(myGridTiles);
+    myGridTiles.addTile(myTile, pos.i, pos.j);
+
+    state = {
+        ...state,
+        gridTiles: myGridTiles
+    }
+
+
+    return state;
+}
+
 const updateMousePos = (state, action) => {
     state = {
         ... state,
@@ -122,6 +146,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.UPDATE_MOUSE_POS: return updateMousePos(state, action);
         case actionTypes.SET_DIMENSIONS: return setDimensions(state, action);
         case actionTypes.ADD_IMAGE_TILE: return addImageTile(state, action);
+        case actionTypes.ADD_TILE_GRID: return addTileGrid(state, action);
 
         default : return state;
     };

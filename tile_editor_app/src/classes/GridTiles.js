@@ -9,6 +9,7 @@ class GridTiles {
     }
 
     addTile(tile, i, j){
+        console.log(i, j);
         this.grid[i][j] = tile;
     }
 

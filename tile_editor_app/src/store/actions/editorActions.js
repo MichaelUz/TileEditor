@@ -54,3 +54,14 @@ export const addImageTile = (image) => {
         image: image
     }
 }
+
+
+export const addTileGrid = (x, y) => {
+    return{
+        type: actionTypes.ADD_TILE_GRID,
+        position: {
+            x: x,
+            y: y
+        }
+    }
+}

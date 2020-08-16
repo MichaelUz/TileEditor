@@ -38,7 +38,7 @@ const Editor = (props) => {
 
     useEffect(() =>{
         document.body.className = 'noBg';
-        props.onAddGrid(50, 50);
+        props.onAddGrid(props.dimensions.rows, props.dimensions.columns);
 
         return() => {
             document.body.className = '';
@@ -97,7 +97,9 @@ const Editor = (props) => {
                     y = {y}
                 />
             );
-        } 
+        }
+        
+        props.onAddTileGrid(x, y);
         return image;
     }
 
@@ -211,7 +213,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps =  (dispatch) => {
     return {
         onAddGrid: (rows, columns) => dispatch(actions.addGrid(rows, columns)),
-        onUpdateMousePos: (x, y) => dispatch(actions.updateMousePos(x, y))
+        onUpdateMousePos: (x, y) => dispatch(actions.updateMousePos(x, y)),
+        onAddTileGrid: (x, y) => dispatch(actions.addTileGrid(x, y))
     }
 };
 
