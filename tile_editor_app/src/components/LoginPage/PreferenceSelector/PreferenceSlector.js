@@ -30,7 +30,16 @@ const PreferenceSelector = (props) => {
     }
 
     const onNextHandler = () => {
-        props.onSetDimensions(dimensions);
+        let newDimensions = dimensions;
+        if(dimensions.rows * dimensions.columns > 10000){
+            newDimensions = {
+                ...dimensions,
+                rows: 100,
+                columns: 100
+            }
+        }
+        setDimensions(newDimensions);
+        props.onSetDimensions(newDimensions);
     }
 
     return(

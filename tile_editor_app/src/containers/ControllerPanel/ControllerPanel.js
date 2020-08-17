@@ -125,7 +125,6 @@ class ControllerPanel extends Component {
         return(
             <div className = {classes.panel}>
                 {toolButtons}
-                <ControllerButton selectable={false} image = {Icons.ExportIcon} select = {()=> null}/>
                 <CSVLink data={this.props.gridTiles.csvData} filename={'myTiles.csv'} enclosingCharacter=''>
                     <ControllerButton selectable={false} image = {Icons.DownloadIcon} select = {()=> null}/>
                 </CSVLink>
