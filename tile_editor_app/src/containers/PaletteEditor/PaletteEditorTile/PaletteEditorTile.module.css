@@ -1,0 +1,22 @@
+.tile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input{
+    width: 50px;
+    height: 30px;
+}
+
+.button{
+    background-color: red;
+    color: white;
+    width: 30px;
+    height: 30px;
+}
+
+.button:active{
+    background-color: darkred;
+}

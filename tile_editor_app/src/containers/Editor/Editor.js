@@ -10,6 +10,7 @@ import classes from './Editor.module.css';
 import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
 import Button from '../../components/Button/Button';
+import PaletteEditor from '../PaletteEditor/PaletteEditor';
 
 const Editor = (props) => {
 
@@ -35,6 +36,8 @@ const Editor = (props) => {
         selected: false
     }
     let [selectInfo, updateSelectInfo] = useState(initialSelectState);
+
+    let [showPaletteEditor, updateShowPaletteEditor] = useState(true);
 
     useEffect(() =>{
         document.body.className = 'noBg';
@@ -188,9 +191,16 @@ const Editor = (props) => {
         updateImages(newImages);
     }
 
+    let paletteEditor = null;
+
+    const toggleShowPaletteEditor = () => {
+       updateShowPaletteEditor(!showPaletteEditor);
+    }
+
+    console.log(paletteEditor);
     return(
             <div className={classes.container}>
-                {/*<input directory="" webkitdirectory="" type="folder" />*/}
+                {showPaletteEditor? <PaletteEditor clicked={toggleShowPaletteEditor}/> : null}
                 <Canvas
                     clicked={clickHandler} 
                     mouseMoveHandler={mouseMoveHandler} 
@@ -202,7 +212,7 @@ const Editor = (props) => {
                 <div className = {classes.rightPanel}>
                     <ControllerPanel clearAll={clearAll}/>
                     <Palette/>
-                    <Button bgColor='rgba(100, 0, 170, 1)'>
+                    <Button bgColor='rgba(100, 0, 170, 1)' clicked={toggleShowPaletteEditor}>
                         Edit Palette
                     </Button>
                 </div>     
