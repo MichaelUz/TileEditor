@@ -18,3 +18,7 @@
     overflow: scroll;
     bottom: 5%;
 }
+
+.buttonContainers{
+    display: flex;
+}

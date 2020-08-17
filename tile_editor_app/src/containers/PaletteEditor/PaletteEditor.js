@@ -6,6 +6,7 @@ import classes from './PaletteEditor.module.css';
 import * as actions from '../../store/actions/editorActions';
 import PaletteEditorTile from './PaletteEditorTile/PaletteEditorTile';
 import TileUploader from '../../components/TileUploader/TileUploader';
+import Backdrop from '../../components/Backdrop/Backdrop';
 
 const PaletteEditor = (props) => {
 
@@ -16,7 +17,7 @@ const PaletteEditor = (props) => {
     
     return(
         <div className={classes.container}>
-            <div className={classes.backdrop} onClick={props.clicked}></div>
+            <Backdrop clicked={props.clicked}/>
             <div className={classes.paletteEditor}>
                 <h2 className={classes.header}>Palette Editor</h2>
                 <hr/>

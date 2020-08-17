@@ -1,0 +1,10 @@
+.helpBox{
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    width: 90%;
+    height: 90%;
+    background-color: rgb(32, 32, 32);
+    border-radius: 15px;
+    z-index: 9;
+}

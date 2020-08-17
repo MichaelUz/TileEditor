@@ -11,6 +11,7 @@ import * as tools from '../ControllerPanel/tools';
 import * as actions from '../../store/actions/editorActions';
 import Button from '../../components/Button/Button';
 import PaletteEditor from '../PaletteEditor/PaletteEditor';
+import HelpBox from '../../components/HelpBox/HelpBox';
 
 const Editor = (props) => {
 
@@ -36,8 +37,8 @@ const Editor = (props) => {
         selected: false
     }
     let [selectInfo, updateSelectInfo] = useState(initialSelectState);
-
     let [showPaletteEditor, updateShowPaletteEditor] = useState(false);
+    let [showHelpBox, updateShowHelpBox] = useState(true);
 
     useEffect(() =>{
         document.body.className = 'noBg';
@@ -195,9 +196,14 @@ const Editor = (props) => {
        updateShowPaletteEditor(!showPaletteEditor);
     }
 
+    const toggleShowHelpBox = () => {
+        updateShowHelpBox(!showHelpBox);
+    }
+
     return(
             <div className={classes.container}>
                 {showPaletteEditor? <PaletteEditor clicked={toggleShowPaletteEditor}/> : null}
+                {showHelpBox ? <HelpBox clicked={toggleShowHelpBox}/> : null}
                 <Canvas
                     clicked={clickHandler} 
                     mouseMoveHandler={mouseMoveHandler} 
@@ -213,9 +219,15 @@ const Editor = (props) => {
                         clearAll={clearAll}
                     />
                     <Palette/>
-                    <Button bgColor='rgba(100, 0, 170, 1)' clicked={toggleShowPaletteEditor}>
-                        Edit Palette
-                    </Button>
+                    <div className={classes.buttonContainers}>
+                        <Button clicked={toggleShowPaletteEditor}>
+                            Edit Palette
+                        </Button>
+                        <Button clicked={toggleShowHelpBox}>
+                            HELP
+                        </Button>
+                    </div>
+                    
                 </div>     
             </div>
              

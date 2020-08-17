@@ -3,8 +3,9 @@
     border-width: 1px;
     border-radius: 10px;
     font-size: large;
-    background-color: darkgray;
+    background-color: white;
     color: black;
+    margin: 5px;
     padding: 0px 10px 0px 10px;
     outline: 0;
     min-height: 50px;
@@ -12,9 +13,9 @@
 }
 
 .button:hover{
-    background-color: grey;
+    background-color: rgb(200, 200, 200);
 }
 
 .button:active{
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(150, 150, 150);
 }
