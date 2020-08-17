@@ -7,7 +7,7 @@ const PaletteEditorTile = (props) => {
     return(
         <div className={classes.tile}>
             <PaletteTile tile={props.tile}/>
-            <input value={props.tile.id} className={classes.input} type='number'/>
+            <p className={classes.id}>ID: {props.tile.id}</p>
             <button className={classes.button} onClick={props.removeTile}>X</button>
         </div>
     );

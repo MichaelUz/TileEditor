@@ -13,7 +13,6 @@ const PaletteEditor = (props) => {
     props.palette.forEach(tile => {
         tiles.push(<PaletteEditorTile tile={tile} key={tile.id} removeTile={() => props.onRemovePaletteTile(tile.id)}/>)
     });
-
     
     return(
         <div className={classes.container}>
@@ -21,7 +20,7 @@ const PaletteEditor = (props) => {
             <div className={classes.paletteEditor}>
                 <h2 className={classes.header}>Palette Editor</h2>
                 <hr/>
-                <p>Edit the IDs that will be used in the CSV file, add and remove tiles !</p>
+                <p>Add and remove tiles to your palette !</p>
                 <div className={classes.tiles}>
                     {tiles}
                 </div>

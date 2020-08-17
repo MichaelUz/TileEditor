@@ -57,7 +57,6 @@ const PreferenceSelector = (props) => {
             <hr className = {classes.prefHr}/>
             <h2>Palette</h2>
             <TileUploader/>
-
             <Palette hideTitle/>
 
             <Link to='/editor'>

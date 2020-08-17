@@ -40,6 +40,7 @@ body.noBg{
 }
 
 .githubLogo{
+  left: 49%;
   position: fixed;
   bottom: 30px;
   margin-top: 50px;

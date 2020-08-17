@@ -5,9 +5,8 @@
     justify-content: space-between;
 }
 
-.input{
-    width: 50px;
-    height: 30px;
+.id{
+    margin: 5px;
 }
 
 .button{
