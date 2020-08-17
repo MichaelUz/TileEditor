@@ -29,6 +29,7 @@ class ControllerPanel extends Component {
     shouldComponentUpdate(nextProps, nextState){
         if(nextProps.currentTool !== this.props.currentTool) return true;
         if(nextState.currentColor !== this.state.currentColor) return true;
+        if(nextProps.gridTiles !== this.props.gridTiles) return true;
         return false;
     }
 
@@ -143,7 +144,7 @@ class ControllerPanel extends Component {
 const mapStateToProps = state => {
     return{
         currentTool: state.currentTool,
-        gridTiles: state.gridTiles
+        gridTiles: state.gridTiles,
     }
 }
 

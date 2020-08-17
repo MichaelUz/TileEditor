@@ -37,7 +37,7 @@ const Editor = (props) => {
     }
     let [selectInfo, updateSelectInfo] = useState(initialSelectState);
 
-    let [showPaletteEditor, updateShowPaletteEditor] = useState(true);
+    let [showPaletteEditor, updateShowPaletteEditor] = useState(false);
 
     useEffect(() =>{
         document.body.className = 'noBg';
@@ -191,13 +191,10 @@ const Editor = (props) => {
         updateImages(newImages);
     }
 
-    let paletteEditor = null;
-
     const toggleShowPaletteEditor = () => {
        updateShowPaletteEditor(!showPaletteEditor);
     }
 
-    console.log(paletteEditor);
     return(
             <div className={classes.container}>
                 {showPaletteEditor? <PaletteEditor clicked={toggleShowPaletteEditor}/> : null}
@@ -210,7 +207,11 @@ const Editor = (props) => {
                     {images}
                 </Canvas>
                 <div className = {classes.rightPanel}>
-                    <ControllerPanel clearAll={clearAll}/>
+                    <ControllerPanel
+                        gridTiles={props.gridTiles} 
+                        currentTool={props.currentTool} 
+                        clearAll={clearAll}
+                    />
                     <Palette/>
                     <Button bgColor='rgba(100, 0, 170, 1)' clicked={toggleShowPaletteEditor}>
                         Edit Palette
@@ -226,7 +227,7 @@ const mapStateToProps = (state) => {
     return {
         currentTool: state.currentTool,
         currentTile: state.currentTile,
-        dimensions: state.dimensions
+        dimensions: state.dimensions,
     }
 };
 

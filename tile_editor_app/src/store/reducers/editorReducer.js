@@ -22,7 +22,6 @@ const initialState = {
     palette: [startingTile, startingTile2, startingTile3],
     tileID: 4,
     gridTiles: new GridTiles(10, 10),
-    csvData: null,
     mousePos: {
         x: 0,
         y: 0
@@ -72,7 +71,6 @@ const addGrid = (state, action) => {
     state = {
         ...state,
         gridTiles: new GridTiles(state.dimensions.rows, state.dimensions.columns),
-        csvData: [],
     }
     return state;
 }
@@ -102,9 +100,11 @@ const addImageTile = (state, action) => {
 }
 
 const addTileGrid = (state, action) => {
-    let myGridTiles = state.gridTiles;
-    let myTile = state.currentTile;
+    let myGridTiles = new GridTiles(state.dimensions.rows, state.dimensions.columns);
+    myGridTiles.grid = [...state.gridTiles.grid];
+    myGridTiles.csvData = [...state.gridTiles.csvData];
 
+    let myTile = state.currentTile;
     const cellSize = state.dimensions.cellSize;
 
     let pos = {
@@ -113,7 +113,6 @@ const addTileGrid = (state, action) => {
     }
 
     myGridTiles.addTile(myTile, pos.i, pos.j);
-
     state = {
         ...state,
         gridTiles: myGridTiles
@@ -123,22 +122,29 @@ const addTileGrid = (state, action) => {
 
 const removeTileGrid = (state, action) => {
 
+    let myGridTiles = new GridTiles(state.dimensions.rows, state.dimensions.columns);
+    myGridTiles.grid = [...state.gridTiles.grid];
+    myGridTiles.csvData = [...state.gridTiles.csvData];
+
     if(action.clear) return addGrid(state);
     const cellSize = state.dimensions.cellSize;
-    let myGridTiles = state.gridTiles;
+
     let pos = {
         i: Math.floor(action.position.y / cellSize),
         j: Math.floor(action.position.x / cellSize)
     }
     myGridTiles.removeTile(pos.i, pos.j);
+    state = {
+        ...state,
+        gridTiles: myGridTiles
+    }
     return state;
 }
 
 const removePaletteTile = (state, action) => {
 
-    console.log('removing palette tile');
     let newPalette = [...state.palette];
-    
+
     for(let i = 0; i < newPalette.length; i++){
         if(newPalette[i].id === action.id) {
             newPalette.splice(i, 1);
