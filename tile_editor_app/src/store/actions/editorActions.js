@@ -72,3 +72,10 @@ export const removeTileGrid = (clear, x, y) => {
         clear: clear
     }
 }
+
+export const removePaletteTile = (id) => {
+    return {
+        type: actionTypes.REMOVE_PALETTE_TILE,
+        id: id
+    }
+}

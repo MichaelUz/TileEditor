@@ -13,7 +13,8 @@
     right: 50px;
     border-radius: 30px;
     width: 475px;
-    height: 800px;
     background-color: rgb(32, 32, 32);
     color: white;
+    overflow: scroll;
+    bottom: 5%;
 }

@@ -134,6 +134,26 @@ const removeTileGrid = (state, action) => {
     return state;
 }
 
+const removePaletteTile = (state, action) => {
+
+    console.log('removing palette tile');
+    let newPalette = [...state.palette];
+    
+    for(let i = 0; i < newPalette.length; i++){
+        if(newPalette[i].id === action.id) {
+            newPalette.splice(i, 1);
+            i--;
+        }   
+    }
+   
+    state = {
+        ...state,
+        palette: newPalette
+    }
+
+    return state;
+}
+
 const updateMousePos = (state, action) => {
     state = {
         ... state,
@@ -158,6 +178,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ADD_IMAGE_TILE: return addImageTile(state, action);
         case actionTypes.ADD_TILE_GRID: return addTileGrid(state, action);
         case actionTypes.REMOVE_TILE_GRID: return removeTileGrid(state, action);
+        case actionTypes.REMOVE_PALETTE_TILE: return removePaletteTile(state, action);
 
         default : return state;
     };

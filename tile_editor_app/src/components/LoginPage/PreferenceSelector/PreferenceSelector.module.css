@@ -5,6 +5,8 @@
     width: 30%;
     margin: auto auto 20px auto;
     box-shadow: 4px 4px rgb(20, 20, 20);
+    max-height: 65vh;
+    overflow: scroll;
 }
 
 .label{

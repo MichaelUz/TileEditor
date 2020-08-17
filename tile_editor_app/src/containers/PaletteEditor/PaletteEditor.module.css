@@ -3,13 +3,19 @@
     flex-direction: column;
     background-color: rgb(20, 20, 20);
     position: fixed;
-    top: 20%;
+    top: 5%;
     left: 35%;
     color: white;
     width: 30%;
+    min-height: 30%;
     z-index: 10;
     border-radius: 20px;
     padding: 10px;
+    overflow: scroll;
+    bottom: 5%;
+}
+
+.container{
 }
 
 .tiles{
