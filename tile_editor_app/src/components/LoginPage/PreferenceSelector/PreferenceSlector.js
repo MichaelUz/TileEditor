@@ -31,11 +31,12 @@ const PreferenceSelector = (props) => {
 
     const onNextHandler = () => {
         let newDimensions = dimensions;
-        if(dimensions.rows * dimensions.columns > 10000){
+        if(dimensions.rows * dimensions.columns > 5625){
+            alert('Canvas is too big. Canvas size is 75x75.')
             newDimensions = {
                 ...dimensions,
-                rows: 100,
-                columns: 100
+                rows: 75,
+                columns: 75
             }
         }
         setDimensions(newDimensions);
