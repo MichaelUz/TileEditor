@@ -1,4 +1,5 @@
 # Tiles
+Check out Tiles [here](https://google.ca).
 
 ### What is Tiles ? 
 
@@ -14,6 +15,3 @@ column count as well as cell size.
 
 - React web application bootstrapped with **create-react-app**.
 - Hosted on **firebase**.
-
-Check out Tiles [here](https://google.ca).
-
