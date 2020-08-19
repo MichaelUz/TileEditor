@@ -9,7 +9,7 @@ column count as well as cell size.
 at any moment.
 - When your done, you can download your designed level as a CSV file. 
 
-[](Design/demo.png)
+![](Design/demo.png)
 
 ##### Tech Stack
 
