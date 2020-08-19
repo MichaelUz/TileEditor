@@ -12,7 +12,6 @@ import GitHubLogo from './assets/images/GitHub-Mark-Light-32px.png';
 
 function App() {
   document.title = 'Tiles';  
-  console.log('APp rendered');
   return (
     <div className={'App bg'}>
       <Switch>
