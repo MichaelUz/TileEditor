@@ -11,6 +11,8 @@ column count as well as cell size.
 
 ![](Design/demo.png)
 
+*Preset tiles and tiles shown on image above gotten from [kenney.nl](https://kenney.nl)*. 
+
 ### Technologies and Libraries
 
 - React web application bootstrapped with **create-react-app**.
