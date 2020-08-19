@@ -39,6 +39,7 @@ const Editor = (props) => {
     let [selectInfo, updateSelectInfo] = useState(initialSelectState);
     let [showPaletteEditor, updateShowPaletteEditor] = useState(false);
     let [showHelpBox, updateShowHelpBox] = useState(false);
+    let [rightPanelOnRight, updateRightPanelPos] = useState(true);
 
     useEffect(() =>{
         document.body.className = 'noBg';
@@ -79,8 +80,6 @@ const Editor = (props) => {
 
     let drawImage = (x, y) => {
         
-        
-
         let image = null;
         if(props.currentTile.image === null){
             image = (
@@ -200,6 +199,40 @@ const Editor = (props) => {
         updateShowHelpBox(!showHelpBox);
     }
 
+    const toggleRightPanelPos = () => {
+        updateRightPanelPos(!rightPanelOnRight);
+    }
+
+    
+    const rightPanelStyle = rightPanelOnRight ? {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        position: 'fixed',
+        top: '10%',
+        right: '50px',
+        borderRadius: '30px',
+        width: '475px',
+        minHeight: '600px',
+        backgroundColor: 'rgb(32, 32, 32)',
+        color: 'white',
+        bottom: '5%'
+    } :
+    {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        position: 'fixed',
+        top: '10%',
+        left: '50px',
+        borderRadius: '30px',
+        width: '475px',
+        minHeight: '600px',
+        backgroundColor: 'rgb(32, 32, 32)',
+        color: 'white',
+        bottom: '5%'
+    };
+
     return(
             <div className={classes.container}>
                 {showPaletteEditor? <PaletteEditor clicked={toggleShowPaletteEditor}/> : null}
@@ -212,7 +245,7 @@ const Editor = (props) => {
                 >
                     {images}
                 </Canvas>
-                <div className = {classes.rightPanel}>
+                <div style={rightPanelStyle}>
                     <ControllerPanel
                         gridTiles={props.gridTiles} 
                         currentTool={props.currentTool} 
@@ -225,6 +258,9 @@ const Editor = (props) => {
                         </Button>
                         <Button clicked={toggleShowHelpBox}>
                             HELP
+                        </Button>
+                        <Button clicked={toggleRightPanelPos}>
+                            Move Panel
                         </Button>
                     </div>
                     
