@@ -13,9 +13,9 @@
     right: 50px;
     border-radius: 30px;
     width: 475px;
+    min-height: 600px;
     background-color: rgb(32, 32, 32);
     color: white;
-    overflow: scroll;
     bottom: 5%;
 }
 

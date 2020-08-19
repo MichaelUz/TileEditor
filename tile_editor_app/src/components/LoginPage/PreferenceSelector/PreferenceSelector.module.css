@@ -6,7 +6,6 @@
     margin: auto auto 20px auto;
     box-shadow: 4px 4px rgb(20, 20, 20);
     max-height: 65vh;
-    overflow: scroll;
 }
 
 .label{
@@ -42,6 +41,11 @@
 
 .nextButton:hover{
     border-radius: 10px;
+}
+
+.loadedText{
+    font-size: large;
+    color: rgb(3, 227, 99);
 }
 
 .prefHr{

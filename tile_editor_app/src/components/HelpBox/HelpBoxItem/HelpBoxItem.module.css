@@ -1,4 +1,23 @@
 .container{
-    height: 20%;
-    width: 90%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    min-height: 20%;
+    width: 45%;
+    background-color: rgb(20, 20, 20);
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 1%;
+}
+
+.text{
+    color: white;
+    font-weight: bold;
+    text-align: left;
+}
+
+.image{
+    width: 25%;
+    height: 80%;
+    margin-right: 5%;
 }

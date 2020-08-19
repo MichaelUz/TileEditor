@@ -2,4 +2,11 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    overflow: scroll;
+    height: 80%;
+}
+
+.container{
+    width: 100%;
+    height: 50%;
 }

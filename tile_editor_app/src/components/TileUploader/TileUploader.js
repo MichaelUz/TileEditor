@@ -10,9 +10,10 @@ const TileUploader = (props) => {
         if(picture.forEach){
             picture.forEach((pic) => {
                 props.onAddImageTile(URL.createObjectURL(pic));
-                console.log('added', pic);
             });
         }
+
+        if(props.afterDrop) props.afterDrop();
     }
 
     const style = {

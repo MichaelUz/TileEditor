@@ -18,7 +18,7 @@ class Palette extends Component {
         });
 
         return (
-            <div>
+            <div className={classes.container}>
                 {!this.props.hideTitle ? <h3>Palette</h3> : null}
                 <div className={classes.Palette}>
                     {tiles}

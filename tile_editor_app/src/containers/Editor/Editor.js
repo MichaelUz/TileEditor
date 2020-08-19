@@ -38,7 +38,7 @@ const Editor = (props) => {
     }
     let [selectInfo, updateSelectInfo] = useState(initialSelectState);
     let [showPaletteEditor, updateShowPaletteEditor] = useState(false);
-    let [showHelpBox, updateShowHelpBox] = useState(true);
+    let [showHelpBox, updateShowHelpBox] = useState(false);
 
     useEffect(() =>{
         document.body.className = 'noBg';

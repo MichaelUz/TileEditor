@@ -14,6 +14,8 @@ const PreferenceSelector = (props) => {
         columns: 10,
         cellSize: 64
     });
+    
+    const [paletteLoaded, setPaletteLoaded] = useState(false);
 
     const dimensionsChangedHandler = (event, type) => {
         setDimensions({
@@ -27,6 +29,10 @@ const PreferenceSelector = (props) => {
             ...dimensions,
             cellSize: Math.max(parseInt(event.target.value, 10), 8)
         });
+    }
+
+    const afterDropHandler = () => {
+        setPaletteLoaded(true);
     }
 
     const onNextHandler = () => {
@@ -56,9 +62,8 @@ const PreferenceSelector = (props) => {
             <input className = {classes.inputField} type = 'number' id = 'cellSizeWidth' onChange={(event) => cellSizeChangedHandler (event, 'columns')}></input>
             <hr className = {classes.prefHr}/>
             <h2>Palette</h2>
-            <TileUploader/>
-            <Palette hideTitle/>
-
+            <TileUploader afterDrop={afterDropHandler}/>
+            {paletteLoaded ? <p className={classes.loadedText}>Palette has been loaded</p> : null}
             <Link to='/editor'>
                     <button className = {classes.nextButton} onClick={onNextHandler}>Start Tiling !</button>
             </Link>
