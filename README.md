@@ -11,7 +11,8 @@ column count as well as cell size.
 
 ![](Design/demo.png)
 
-### Tech Stack
+### Technologies and Libraries
 
 - React web application bootstrapped with **create-react-app**.
+- HTML canvas manipulation done with [react-konva](https://konvajs.org/docs/react/index.html)
 - Hosted on **firebase**.
