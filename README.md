@@ -9,6 +9,8 @@ column count as well as cell size.
 at any moment.
 - When your done, you can download your designed level as a CSV file. 
 
+[DEMO](Design/demo.png)
+
 ##### Tech Stack
 
 Tiles is a React web application bootstrapped with create-react-app.
