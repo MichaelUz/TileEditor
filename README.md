@@ -14,5 +14,5 @@ column count as well as cell size.
 ### Technologies and Libraries
 
 - React web application bootstrapped with **create-react-app**.
-- HTML canvas manipulation done with [react-konva](https://konvajs.org/docs/react/index.html)
+- HTML canvas manipulation done with [react-konva](https://konvajs.org/docs/react/index.html).
 - Hosted on **firebase**.
