@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
-import LoginPage from './components/LoginPage/LoginPage';
+import LoginPage from './components/LandingPage/LoginPage';
 import Editor from './containers/Editor/Editor';
 import GitHubLogo from './assets/images/GitHub-Mark-Light-32px.png';
 
